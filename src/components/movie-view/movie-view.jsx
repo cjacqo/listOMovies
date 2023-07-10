@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
 
 export const MovieView = ({ movie, onBackClick }) => {
   const [genre, setGenre] = useState(null)
@@ -39,4 +40,15 @@ export const MovieView = ({ movie, onBackClick }) => {
       </div>
     </div>
   )
+}
+
+MovieView.propTypes = {
+  movie: PropTypes.shape({
+    Title: PropTypes.string.isRequired,
+    ImagePath: PropTypes.string.isRequired,
+    Description: PropTypes.string.isRequired,
+    Genre: PropTypes.string.isRequired,
+    Directors: PropTypes.array.isRequired
+  }).isRequired,
+  onBackClick: PropTypes.func.isRequired
 }
