@@ -27312,64 +27312,69 @@ var _movieCard = require("../movie-card/movie-card");
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
-    const [movies, setMovies] = (0, _react.useState)([
-        {
-            id: 1,
-            title: "Stand by Me",
-            description: "Four friends set out on a journey to find a dead body in the woods. Along the way, they confront their fears and learn about themselves and each other.",
-            genre: "Drama",
-            director: "Rob Reiner",
-            image: "https://m.media-amazon.com/images/I/81PmlArGyfS._AC_UF894,1000_QL80_.jpg"
-        },
-        {
-            id: 2,
-            title: "Pulp Fiction",
-            description: "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
-            genre: "Crime",
-            director: "Quentin Tarantino",
-            image: "https://m.media-amazon.com/images/M/MV5BNGNhMDIzZTUtNTBlZi00MTRlLWFjM2ItYzViMjE3YzI5MjljXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg"
-        },
-        {
-            id: 3,
-            title: "Being John Malkovich",
-            description: "A puppeteer discovers a portal that leads into the mind of actor John Malkovich. As he explores Malkovich's mind, he and others become obsessed with the experience and its possibilities.",
-            genre: "Fantasy",
-            director: "Spike Jonze",
-            image: "https://m.media-amazon.com/images/M/MV5BMTFlYjgyMjUtNmJhZS00MDY2LTg0ZmMtNTVlNDA2NTUwYTRjXkEyXkFqcGdeQXVyMTUzMDUzNTI3._V1_.jpg"
-        }
-    ]);
+    // const [movies, setMovies] = useState([
+    //   {
+    //     id: 1,
+    //     title: 'Stand by Me',
+    //     description: 'Four friends set out on a journey to find a dead body in the woods. Along the way, they confront their fears and learn about themselves and each other.',
+    //     genre: 'Drama',
+    //     director: 'Rob Reiner',
+    //     image: 'https://m.media-amazon.com/images/I/81PmlArGyfS._AC_UF894,1000_QL80_.jpg'
+    //   },
+    //   {
+    //     id: 2,
+    //     title: 'Pulp Fiction',
+    //     description: 'The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.',
+    //     genre: 'Crime',
+    //     director: 'Quentin Tarantino',
+    //     image: 'https://m.media-amazon.com/images/M/MV5BNGNhMDIzZTUtNTBlZi00MTRlLWFjM2ItYzViMjE3YzI5MjljXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg'
+    //   },
+    //   {
+    //     id: 3,
+    //     title: 'Being John Malkovich',
+    //     description: 'A puppeteer discovers a portal that leads into the mind of actor John Malkovich. As he explores Malkovich\'s mind, he and others become obsessed with the experience and its possibilities.',
+    //     genre: 'Fantasy',
+    //     director: 'Spike Jonze',
+    //     image: 'https://m.media-amazon.com/images/M/MV5BMTFlYjgyMjUtNmJhZS00MDY2LTg0ZmMtNTVlNDA2NTUwYTRjXkEyXkFqcGdeQXVyMTUzMDUzNTI3._V1_.jpg'
+    //   }
+    // ])
+    const [movies, setMovies] = (0, _react.useState)([]);
+    (0, _react.useEffect)(()=>{
+        fetch("https://list-o-movies-311c22237892.herokuapp.com/movies").then((res)=>res.json()).then((data)=>setMovies(data));
+    }, []);
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
     if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
         movie: selectedMovie,
         onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 35,
+        lineNumber: 43,
         columnNumber: 29
     }, undefined);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "The list is empty!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 37,
+        lineNumber: 45,
         columnNumber: 35
     }, undefined);
+    console.log(movies);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
                 movie: movie,
                 onMovieClick: (newSelectedMovie)=>setSelectedMovie(newSelectedMovie)
-            }, movie.id, false, {
+            }, movie._id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 42,
+                lineNumber: 52,
                 columnNumber: 9
             }, undefined))
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 40,
+        lineNumber: 50,
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "HaRNt0xIQDS82ns5+me21QJdagc=");
+_s(MainView, "llzgrUkvR/+OoCNfiqlA1H2LLFI=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
@@ -27421,14 +27426,15 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "MovieView", ()=>MovieView);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 const MovieView = ({ movie, onBackClick })=>{
+    const directorTitle = movie.Directors.length > 1 ? "Directors" : "Director";
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                src: movie.image,
-                alt: movie.title
+                src: movie.ImagePath,
+                alt: movie.Title
             }, void 0, false, {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 4,
+                lineNumber: 5,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27436,17 +27442,7 @@ const MovieView = ({ movie, onBackClick })=>{
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                         children: [
                             "Title: ",
-                            movie.title
-                        ]
-                    }, void 0, true, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 6,
-                        columnNumber: 9
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                        children: [
-                            "Description: ",
-                            movie.description
+                            movie.Title
                         ]
                     }, void 0, true, {
                         fileName: "src/components/movie-view/movie-view.jsx",
@@ -27455,8 +27451,8 @@ const MovieView = ({ movie, onBackClick })=>{
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                         children: [
-                            "Genre: ",
-                            movie.genre
+                            "Description: ",
+                            movie.Description
                         ]
                     }, void 0, true, {
                         fileName: "src/components/movie-view/movie-view.jsx",
@@ -27465,18 +27461,38 @@ const MovieView = ({ movie, onBackClick })=>{
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                         children: [
-                            "Director: ",
-                            movie.director
+                            "Genre: ",
+                            movie.Genre
                         ]
                     }, void 0, true, {
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 9,
                         columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                        children: [
+                            directorTitle,
+                            ": ",
+                            movie.Directors.map((director, i)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                    children: [
+                                        director,
+                                        "\xa0"
+                                    ]
+                                }, i, true, {
+                                    fileName: "src/components/movie-view/movie-view.jsx",
+                                    lineNumber: 10,
+                                    columnNumber: 67
+                                }, undefined))
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/movie-view/movie-view.jsx",
+                        lineNumber: 10,
+                        columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 5,
+                lineNumber: 6,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27485,18 +27501,18 @@ const MovieView = ({ movie, onBackClick })=>{
                     children: "Back"
                 }, void 0, false, {
                     fileName: "src/components/movie-view/movie-view.jsx",
-                    lineNumber: 12,
+                    lineNumber: 13,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 11,
+                lineNumber: 12,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/movie-view/movie-view.jsx",
-        lineNumber: 3,
+        lineNumber: 4,
         columnNumber: 5
     }, undefined);
 };
@@ -27523,7 +27539,7 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 const MovieCard = ({ movie, onMovieClick })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         onClick: ()=>onMovieClick(movie),
-        children: movie.title
+        children: movie.Title
     }, void 0, false, {
         fileName: "src/components/movie-card/movie-card.jsx",
         lineNumber: 3,
