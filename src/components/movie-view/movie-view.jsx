@@ -1,4 +1,29 @@
+import { useEffect, useState } from 'react'
+
 export const MovieView = ({ movie, onBackClick }) => {
+  const [genre, setGenre] = useState(null)
+  const [directors, setDirectors] = useState([])
+
+  useEffect(() => {
+    fetch('https://list-o-movies-311c22237892.herokuapp.com/genres')
+      .then(res => res.json())
+      .then(data => {
+        const foundGenre = data.find(g => g._id === movie.Genre)
+        setGenre(foundGenre.Name)
+      })
+    fetch('https://list-o-movies-311c22237892.herokuapp.com/directors')
+      .then(res => res.json())
+      .then(data => {
+        let foundDirectors = []
+        movie.Directors.forEach(director => {
+          foundDirectors.push(data.find(d => d._id === director))
+        })
+        setDirectors(foundDirectors)
+      })
+  }, [movie])
+
+  console.log(directors)
+  
   const directorTitle = movie.Directors.length > 1 ? 'Directors' : 'Director'
   return (
     <div>
@@ -6,8 +31,8 @@ export const MovieView = ({ movie, onBackClick }) => {
       <div>
         <p>Title: {movie.Title}</p>
         <p>Description: {movie.Description}</p>
-        <p>Genre: {movie.Genre}</p>
-        <p>{directorTitle}: {movie.Directors.map((director, i) => <span key={i}>{director}&nbsp;</span>)}</p>
+        <p>Genre: {genre}</p>
+        <p>{directorTitle}: {directors.map((director, i) => <span key={i}>{director.Name}&nbsp;</span>)}</p>
       </div>
       <div>
         <button onClick={onBackClick}>Back</button>
