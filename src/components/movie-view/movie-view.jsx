@@ -1,3 +1,4 @@
+import './movie-view.scss'
 import { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
@@ -23,8 +24,6 @@ export const MovieView = ({ movie, onBackClick }) => {
       })
   }, [movie])
 
-  console.log(directors)
-  
   const directorTitle = movie.Directors.length > 1 ? 'Directors' : 'Director'
   return (
     <div>
@@ -36,7 +35,11 @@ export const MovieView = ({ movie, onBackClick }) => {
         <p>{directorTitle}: {directors.map((director, i) => <span key={i}>{director.Name}&nbsp;</span>)}</p>
       </div>
       <div>
-        <button onClick={onBackClick}>Back</button>
+        <button
+          className='back-button'
+          onClick={onBackClick}>
+            Back
+        </button>
       </div>
     </div>
   )

@@ -44,8 +44,6 @@ export const MainView = () => {
 
   if (movies.length === 0) return <div>The list is empty!</div>
 
-  console.log(movies)
-  
   return (
     <div>
       {movies.map(movie => (
