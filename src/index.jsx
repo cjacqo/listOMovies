@@ -9,7 +9,7 @@ import Container from 'react-bootstrap/Container'
 // Main component
 const App = () => {
   return (
-    <Container>
+    <Container style={{border: '1px solid red'}}>
       <MainView />
     </Container>
   )
