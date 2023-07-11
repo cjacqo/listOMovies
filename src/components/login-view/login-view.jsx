@@ -8,17 +8,24 @@ export const LoginView = ({ onLoggedIn }) => {
   const handleSubmit = e => {
     e.preventDefault()
     const data = {
-      access: username,
-      secret: password
+      UserName: username,
+      Password: password
     }
 
     fetch('https://list-o-movies-311c22237892.herokuapp.com/login', {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify(data)
-    }).then(res => {
-      if (res.ok) onLoggedIn(username)
-      else alert('Login failed')
     })
+      .then(res => res.json())
+      .then(data => {
+        console.log('Login response: ', data)
+        if (data.user) onLoggedIn(data.user, data.token)
+        else alert('No such user')
+      })
+      .catch(e => alert('Something went wrong'))
   }
   
   return (
