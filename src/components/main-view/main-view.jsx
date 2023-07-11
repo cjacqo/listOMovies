@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
+import { LoginView } from '../login-view/login-view'
 import { MovieView } from '../movie-view/movie-view'
 import { MovieCard } from '../movie-card/movie-card'
 
 export const MainView = () => {
+  const [user, setUser] = useState(null)
   const [movies, setMovies] = useState([])
 
   useEffect(() => {
@@ -12,6 +14,8 @@ export const MainView = () => {
   }, [])
 
   const [selectedMovie, setSelectedMovie] = useState(null)
+
+  if (!user) return <LoginView />
 
   if (selectedMovie) return <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
 
