@@ -27324,32 +27324,6 @@ var _movieCard = require("../movie-card/movie-card");
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
-    // const [movies, setMovies] = useState([
-    //   {
-    //     id: 1,
-    //     title: 'Stand by Me',
-    //     description: 'Four friends set out on a journey to find a dead body in the woods. Along the way, they confront their fears and learn about themselves and each other.',
-    //     genre: 'Drama',
-    //     director: 'Rob Reiner',
-    //     image: 'https://m.media-amazon.com/images/I/81PmlArGyfS._AC_UF894,1000_QL80_.jpg'
-    //   },
-    //   {
-    //     id: 2,
-    //     title: 'Pulp Fiction',
-    //     description: 'The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.',
-    //     genre: 'Crime',
-    //     director: 'Quentin Tarantino',
-    //     image: 'https://m.media-amazon.com/images/M/MV5BNGNhMDIzZTUtNTBlZi00MTRlLWFjM2ItYzViMjE3YzI5MjljXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg'
-    //   },
-    //   {
-    //     id: 3,
-    //     title: 'Being John Malkovich',
-    //     description: 'A puppeteer discovers a portal that leads into the mind of actor John Malkovich. As he explores Malkovich\'s mind, he and others become obsessed with the experience and its possibilities.',
-    //     genre: 'Fantasy',
-    //     director: 'Spike Jonze',
-    //     image: 'https://m.media-amazon.com/images/M/MV5BMTFlYjgyMjUtNmJhZS00MDY2LTg0ZmMtNTVlNDA2NTUwYTRjXkEyXkFqcGdeQXVyMTUzMDUzNTI3._V1_.jpg'
-    //   }
-    // ])
     const [movies, setMovies] = (0, _react.useState)([]);
     (0, _react.useEffect)(()=>{
         fetch("https://list-o-movies-311c22237892.herokuapp.com/movies").then((res)=>res.json()).then((data)=>setMovies(data));
@@ -27360,14 +27334,14 @@ const MainView = ()=>{
         onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 43,
+        lineNumber: 16,
         columnNumber: 29
     }, undefined);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "The list is empty!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 45,
+        lineNumber: 18,
         columnNumber: 35
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27376,12 +27350,12 @@ const MainView = ()=>{
                 onMovieClick: (newSelectedMovie)=>setSelectedMovie(newSelectedMovie)
             }, movie._id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 50,
+                lineNumber: 23,
                 columnNumber: 9
             }, undefined))
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 48,
+        lineNumber: 21,
         columnNumber: 5
     }, undefined);
 };
