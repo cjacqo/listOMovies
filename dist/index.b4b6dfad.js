@@ -27326,16 +27326,27 @@ var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
     const [user, setUser] = (0, _react.useState)(null);
+    const [token, setToken] = (0, _react.useState)(null);
     const [movies, setMovies] = (0, _react.useState)([]);
     (0, _react.useEffect)(()=>{
-        fetch("https://list-o-movies-311c22237892.herokuapp.com/movies").then((res)=>res.json()).then((data)=>setMovies(data));
-    }, []);
+        if (!token) return;
+        fetch("https://list-o-movies-311c22237892.herokuapp.com/movies", {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((res)=>res.json()).then((data)=>setMovies(data));
+    }, [
+        token
+    ]);
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
     if (!user) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginView.LoginView), {
-        onLoggedIn: (user)=>setUser(user)
+        onLoggedIn: (user, token)=>{
+            setUser(user);
+            setToken(token);
+        }
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 18,
+        lineNumber: 23,
         columnNumber: 21
     }, undefined);
     if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
@@ -27343,14 +27354,14 @@ const MainView = ()=>{
         onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 20,
+        lineNumber: 28,
         columnNumber: 29
     }, undefined);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "The list is empty!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 22,
+        lineNumber: 30,
         columnNumber: 35
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27360,7 +27371,7 @@ const MainView = ()=>{
                     onMovieClick: (newSelectedMovie)=>setSelectedMovie(newSelectedMovie)
                 }, movie._id, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 27,
+                    lineNumber: 35,
                     columnNumber: 9
                 }, undefined)),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -27370,17 +27381,17 @@ const MainView = ()=>{
                 children: "Logout"
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 33,
+                lineNumber: 41,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 25,
+        lineNumber: 33,
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "+Vsu39JamLpNQwkqfYjxLzY9ejs=");
+_s(MainView, "BoaYur6ZJoYRSs4C+ujiB6Mgp9c=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
