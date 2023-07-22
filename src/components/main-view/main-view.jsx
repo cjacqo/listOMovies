@@ -38,7 +38,7 @@ export const MainView = () => {
           onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)}
         />
       ))}
-      <button onClick={() => { setUser(null) }}>Logout</button>
+      <button onClick={() => { setUser(null); setToken(null) }}>Logout</button>
     </div>
   )
 }
