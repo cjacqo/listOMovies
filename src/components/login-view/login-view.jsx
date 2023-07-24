@@ -40,12 +40,12 @@ export const LoginView = ({ onLoggedIn }) => {
           <Row className='mb-3'>
             <label
               htmlFor='usernameControl1'
-              className='col-form-label col-sm-3'>
+              className='col-form-label col-form-label-sm col-sm-3'>
                 Username:
               </label>
             <Col className='col-sm-9'>
               <input
-                type="text"
+                type='text'
                 className='form-control'
                 id='usernameControl1'
                 placeholder='Username...'
@@ -58,12 +58,12 @@ export const LoginView = ({ onLoggedIn }) => {
           <Row className='mb-3'>
             <label
               htmlFor='passwordControl1'
-              className='col-form-label col-sm-3'>
+              className='col-form-label col-form-label-sm col-sm-3'>
                 Password:
               </label>
             <Col className='col-sm-9'>
               <input
-                type="password"
+                type='password'
                 className='form-control'
                 id='passwordControl1'
                 placeholder='Password...'
@@ -75,7 +75,7 @@ export const LoginView = ({ onLoggedIn }) => {
           </Row>
           <Row className='justify-content-center'>
             <button
-              type="submit"
+              type='submit'
               className='btn btn-primary col-sm-10'>
                 Submit
             </button>

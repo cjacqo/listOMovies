@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 export const SignupView = () => {
   const [firstname, setFirstname] = useState('')
@@ -35,63 +37,123 @@ export const SignupView = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Firstname:
-        <input
-          type="text"
-          value={firstname}
-          onChange={e => setFirstname(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Lastname:
-        <input
-          type="text"
-          value={lastname}
-          onChange={e => setLastname(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Username:
-        <input
-          type="text"
-          value={username}
-          onChange={e => setUsername(e.target.value)}
-          required
-          minLength='5'
-        />
-      </label>
-      <label>
-        Password:
-        <input
-          type="password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Email:
-        <input
-          type="email"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Birthday:
-        <input
-          type="date"
-          value={birthday}
-          onChange={e => setBirthday(e.target.value)}
-          required
-        />
-      </label>
-      <button type="submit">Submit</button>
-    </form>
+    <>
+      <h1>Sign Up</h1>
+      <form onSubmit={handleSubmit} className='row gy-2 gx-3 align-items-center'>
+        <Row className='mb-3'>
+          <label
+            htmlFor='firstNameControl1'
+            className='col-form-label col-form-label-sm col-sm-3'>
+            First Name:
+          </label>
+          <Col className='col-sm-9'>
+            <input
+              type='text'
+              className='form-control'
+              id='firstNameControl1'
+              placeholder='First name...'
+              value={firstname}
+              onChange={e => setFirstname(e.target.value)}
+              required
+            />
+          </Col>
+        </Row>
+        <Row className='mb-3'>
+          <label
+            htmlFor='lastNameControl1'
+            className='col-form-label col-form-label-sm col-sm-3'>
+            Last Name:
+          </label>
+          <Col className='col-sm-9'>
+            <input
+              type='text'
+              className='form-control'
+              id='lastNameControl1'
+              placeholder='Last name...'
+              value={lastname}
+              onChange={e => setLastname(e.target.value)}
+              required
+            />
+          </Col>
+        </Row>
+        <Row className='mb-3'>
+          <label
+            htmlFor='userNameControl2'
+            className='col-form-label col-form-label-sm col-sm-3'>
+            Username:
+          </label>
+          <Col className='col-sm-9'>
+            <input
+              type='text'
+              className='form-control'
+              id='userNameControl2'
+              placeholder='Username...'
+              value={username}
+              onChange={e => setUsername(e.target.value)}
+              required
+              minLength='5'
+            />
+          </Col>
+        </Row>
+        <Row className='mb-3'>
+          <label
+            htmlFor='passwordControl2'
+            className='col-form-label col-form-label-sm col-sm-3'>
+            Password:
+          </label>
+          <Col className='col-sm-9'>
+            <input
+              type='password'
+              className='form-control'
+              id='passwordControl2'
+              placeholder='Password...'
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              required
+            />
+          </Col>
+        </Row>
+        <Row className='mb-3'>
+          <label
+            htmlFor='emailControl1'
+            className='col-form-label col-form-label-sm col-sm-3'>
+            Email:
+          </label>
+          <Col className='col-sm-9'>
+            <input
+              type='email'
+              className='form-control'
+              id='emailControl1'
+              placeholder='Email...'
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              required
+            />
+          </Col>
+        </Row>
+        <Row className='mb-3'>
+          <label
+            htmlFor='birthdayControl1'
+            className='col-form-label col-form-label-sm col-sm-3'>
+            Birthday:
+          </label>
+          <Col className='col-sm-9'>
+            <input
+              type='date'
+              className='form-control'
+              id='birthdayControl1'
+              value={birthday}
+              onChange={e => setBirthday(e.target.value)}
+              required
+            />
+          </Col>
+        </Row>
+        <Row className='justify-content-center'>
+          <button
+            type='submit'
+            className='btn btn-primary col-sm-10'>Submit</button>
+        </Row>
+      </form>
+    </>
   )
 }
