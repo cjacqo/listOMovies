@@ -25,7 +25,7 @@ export const MainView = () => {
   }, [token])
 
   return (
-    <Row>
+    <Row className='justify-content-md-center align-items-md-center'>
       {!user ? (
         <>
           <Col>
@@ -42,7 +42,12 @@ export const MainView = () => {
           </Col>
         </>
       ) : selectedMovie ? (
-        <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
+        <Col md={8}>
+          <MovieView
+            movie={selectedMovie}
+            onBackClick={() => setSelectedMovie(null)}
+          />
+        </Col>
       ) : movies.length === 0 ? (
         <div>The list is empty!</div>
       ) : (
