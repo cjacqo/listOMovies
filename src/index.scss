@@ -5,6 +5,14 @@ $body-bg: Honeydew;
 
 $color: steelblue;
 
+body {
+  height: 100vh;
+}
+
+#root {
+  height: 100%;
+}
+
 .list-o-movies {
   color: $color;
 }

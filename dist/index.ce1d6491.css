@@ -13186,6 +13186,14 @@ textarea.form-control-lg {
   }
 }
 
+body {
+  height: 100vh;
+}
+
+#root {
+  height: 100%;
+}
+
 .list-o-movies {
   color: #4682b4;
 }
