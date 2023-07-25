@@ -15,7 +15,6 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null)
   const [token, setToken] = useState(storedToken ? storedToken : null)
   const [movies, setMovies] = useState([])
-  const [selectedMovie, setSelectedMovie] = useState(null)
 
   useEffect(() => {
     if (!token) return
@@ -72,7 +71,11 @@ export const MainView = () => {
                   <Col>The list is empty!</Col>
                 ) : (
                   <Col md={8}>
-                    <MovieView movies={movies} />
+                    <MovieView
+                      movies={movies}
+                      user={user}
+                      token={token}
+                      setUser={user => setUser(user)}  />
                   </Col>
                 )}
               </>

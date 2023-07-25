@@ -9,10 +9,11 @@ import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 
-export const MovieView = ({ movies }) => {
+export const MovieView = ({ movies, user, token, setUser }) => {
   const { movieId } = useParams()
   const [genre, setGenre] = useState(null)
   const [directors, setDirectors] = useState([])
+  const [isFav, setIsFav] = useState(false)
 
   const movie = movies.find(m => m._id === movieId)
 
@@ -35,6 +36,7 @@ export const MovieView = ({ movies }) => {
   }, [movie])
 
   const directorTitle = movie.Directors.length > 1 ? 'Directors' : 'Director'
+
   return (
     <Card className='h-100 w-100'>
       <Container className='m-0 p-0'>
@@ -43,17 +45,24 @@ export const MovieView = ({ movies }) => {
             <img className='img-fluid' src={movie.ImagePath} alt={movie.Title} />
           </Col>
           <Col>
-            <div className='card-body'>
-              <h5>{movie.Title}</h5>
+            <Card.Body>
+              <Card.Title>{movie.Title}</Card.Title>
               <p className='card-text'><strong>Description:</strong>{movie.Description}</p>
               <p>Genre: {genre}</p>
               <p>{directorTitle}: {directors.map((director, i) => <span key={i}>{director.Name}&nbsp;</span>)}</p>
+              {
+                isFav ? (
+                  <Button>Remove from favorites</Button>
+                ) : (
+                  <Button>Add to favorites</Button>
+                )
+              }
               <Link to={`/`}>
                 <Button className='btn-dark'>
                   Back
                 </Button>
               </Link>
-            </div>
+            </Card.Body>
           </Col>
         </Row>
       </Container>
@@ -62,7 +71,10 @@ export const MovieView = ({ movies }) => {
 }
 
 MovieView.propTypes = {
-  movies: PropTypes.array.isRequired
+  movies: PropTypes.array.isRequired,
+  user: PropTypes.object.isRequired,
+  token: PropTypes.string.isRequired,
+  setUser: PropTypes.func.isRequired
   // movie: PropTypes.shape({
   //   Title: PropTypes.string.isRequired,
   //   ImagePath: PropTypes.string.isRequired,
