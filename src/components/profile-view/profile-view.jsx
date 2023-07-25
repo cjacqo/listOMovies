@@ -20,9 +20,18 @@ export function ProfileView({ movies, onUpdatedUserInfo }) {
 
     fetch(url, {
       method: 'DELETE',
-      headers: { Authorization: `Bearer ${token}` },
-      body: JSON.stringify(id)
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      }
     })
+      .then(res => {
+        if (res.ok) return res.json()
+      })
+      .then(data => {
+        localStorage.setItem('user', JSON.stringify(data))
+        setUser(data)
+      })
   }
 
   return (
