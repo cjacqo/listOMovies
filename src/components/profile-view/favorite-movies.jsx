@@ -8,17 +8,19 @@ export function FavoriteMovies() {
       <Col xs={12}>
         <h2>Favorite Movies</h2>
       </Col>
-      {favoriteMoviesList.map(movie => {
-        return (
-          <div key={movie._id}>
-            <img src={movie.ImagePath} alt={movie.Title} />
-            <Link>
-              <h4>{movie.Title}</h4>
-            </Link>
-            <button variant="secondary" onClick={() => removeFav(movies._id)}>Remove from list</button>
-          </div>
-        )
-      })}
+      <Row>
+        {favoriteMoviesList.map(movie => {
+          return (
+            <Col key={movie._id}>
+              <img src={movie.ImagePath} alt={movie.Title} />
+              <Link>
+                <h4>{movie.Title}</h4>
+              </Link>
+              <button variant="secondary" onClick={() => removeFav(movies._id)}>Remove from list</button>
+            </Col>
+          )
+        })}
+      </Row>
     </Row>
   )
 }
