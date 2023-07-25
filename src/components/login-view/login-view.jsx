@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Button from 'react-bootstrap/Button'
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState('')
@@ -74,11 +75,11 @@ export const LoginView = ({ onLoggedIn }) => {
             </Col>
           </Row>
           <Row className='justify-content-center'>
-            <button
+            <Button
               type='submit'
               className='btn btn-primary col-sm-10'>
                 Submit
-            </button>
+            </Button>
           </Row>
       </form>
     </div>

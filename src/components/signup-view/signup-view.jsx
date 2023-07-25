@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Button from 'react-bootstrap/Button'
 
 export const SignupView = () => {
   const [firstname, setFirstname] = useState('')
@@ -143,9 +144,11 @@ export const SignupView = () => {
           </Col>
         </Row>
         <Row className='justify-content-center'>
-          <button
+          <Button
             type='submit'
-            className='btn btn-primary col-sm-12'>Submit</button>
+            className='btn btn-primary col-sm-12'>
+              Submit
+          </Button>
         </Row>
       </form>
     </div>

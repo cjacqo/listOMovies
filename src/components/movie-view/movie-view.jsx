@@ -1,6 +1,8 @@
 import './movie-view.scss'
 import { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
+import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
 
 export const MovieView = ({ movie, onBackClick }) => {
   const [genre, setGenre] = useState(null)
@@ -26,8 +28,8 @@ export const MovieView = ({ movie, onBackClick }) => {
 
   const directorTitle = movie.Directors.length > 1 ? 'Directors' : 'Director'
   return (
-    <div>
-      <img src={movie.ImagePath} alt={movie.Title} />
+    <Card>
+      <img className='w-75' src={movie.ImagePath} alt={movie.Title} />
       <div>
         <p>Title: {movie.Title}</p>
         <p>Description: {movie.Description}</p>
@@ -35,13 +37,13 @@ export const MovieView = ({ movie, onBackClick }) => {
         <p>{directorTitle}: {directors.map((director, i) => <span key={i}>{director.Name}&nbsp;</span>)}</p>
       </div>
       <div>
-        <button
-          className='back-button'
+        <Button
+          className='btn-light'
           onClick={onBackClick}>
             Back
-        </button>
+        </Button>
       </div>
-    </div>
+    </Card>
   )
 }
 

@@ -5,6 +5,7 @@ import { MovieCard } from '../movie-card/movie-card'
 import { SignupView } from '../signup-view/signup-view'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Button from 'react-bootstrap/Button'
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem('user'))
@@ -61,7 +62,11 @@ export const MainView = () => {
               />
             </Col>
           ))}
-          <button onClick={() => { setUser(null); setToken(null); localStorage.clear() }}>Logout</button>
+          <Button
+            className='btn-danger'
+            onClick={() => { setUser(null); setToken(null); localStorage.clear() }}>
+              Logout
+          </Button>
         </>
       )
       }
