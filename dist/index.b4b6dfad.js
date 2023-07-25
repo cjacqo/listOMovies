@@ -28472,14 +28472,14 @@ const LoginView = ({ onLoggedIn })=>{
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
                 onSubmit: handleSubmit,
-                className: "row gy-2 gx-3 justify-content-center align-items-center",
+                className: "row mt-5 gy-2 gx-3 h-100 justify-content-center align-items-center",
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
-                        className: "mb-3",
+                        className: "mb-4",
                         children: [
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
                                 htmlFor: "usernameControl1",
-                                className: "col-form-label col-form-label-sm col-sm-3",
+                                className: "col-form-label col-sm-3",
                                 children: "Username:"
                             }, void 0, false, {
                                 fileName: "src/components/login-view/login-view.jsx",
@@ -28513,11 +28513,11 @@ const LoginView = ({ onLoggedIn })=>{
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
-                        className: "mb-3",
+                        className: "mb-5",
                         children: [
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
                                 htmlFor: "passwordControl1",
-                                className: "col-form-label col-form-label-sm col-sm-3",
+                                className: "col-form-label col-sm-3",
                                 children: "Password:"
                             }, void 0, false, {
                                 fileName: "src/components/login-view/login-view.jsx",
