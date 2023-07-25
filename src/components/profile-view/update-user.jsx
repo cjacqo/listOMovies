@@ -39,7 +39,7 @@ export function UpdateUser({ user, handleSubmit, handleUpdate }) {
           <Form.Label htmlFor='emailControl2'>
             Email:
           </Form.Label>
-          <input
+          <Form.Control
             type='email'
             id='emailControl2'
             name='Email'

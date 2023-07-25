@@ -11,7 +11,11 @@ export function FavoriteMovies() {
       <Row>
         {favoriteMoviesList.map(movie => {
           return (
-            <Col key={movie._id}>
+            <Col
+              key={movie._id}
+              xs={12}
+              md={6}
+              lg={3}>
               <img src={movie.ImagePath} alt={movie.Title} />
               <Link>
                 <h4>{movie.Title}</h4>

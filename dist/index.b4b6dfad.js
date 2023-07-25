@@ -47810,13 +47810,16 @@ function FavoriteMovies() {
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
                 children: favoriteMoviesList.map((movie)=>{
                     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Col, {
+                        xs: 12,
+                        md: 6,
+                        lg: 3,
                         children: [
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
                                 src: movie.ImagePath,
                                 alt: movie.Title
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/favorite-movies.jsx",
-                                lineNumber: 15,
+                                lineNumber: 19,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
@@ -47824,12 +47827,12 @@ function FavoriteMovies() {
                                     children: movie.Title
                                 }, void 0, false, {
                                     fileName: "src/components/profile-view/favorite-movies.jsx",
-                                    lineNumber: 17,
+                                    lineNumber: 21,
                                     columnNumber: 17
                                 }, this)
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/favorite-movies.jsx",
-                                lineNumber: 16,
+                                lineNumber: 20,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -47838,7 +47841,7 @@ function FavoriteMovies() {
                                 children: "Remove from list"
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/favorite-movies.jsx",
-                                lineNumber: 19,
+                                lineNumber: 23,
                                 columnNumber: 15
                             }, this)
                         ]
@@ -47965,7 +47968,7 @@ function UpdateUser({ user, handleSubmit, handleUpdate }) {
                                 lineNumber: 39,
                                 columnNumber: 11
                             }, this),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
                                 type: "email",
                                 id: "emailControl2",
                                 name: "Email",
