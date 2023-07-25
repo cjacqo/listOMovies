@@ -1,15 +1,15 @@
 import React from 'react'
-import Form from 'react-bootstrap/From'
+import { Form } from 'react-bootstrap'
 
-export default function UpdateUser({ user, handleSubmit, handleUpdate }) {
+export function UpdateUser({ user, handleSubmit, handleUpdate }) {
   return (
     <>
       <h4>Update</h4>
-      <Form onSubmit={e => handleSubmit(e)}>
+      <Form onSubmit={e => handleSubmit(e)}>z
         <Form.Group>
-          <Form.label htmlFor='userNameControl3'>
+          <Form.Label htmlFor='userNameControl3'>
             Username:
-          </Form.label>
+          </Form.Label>
           <Form.Control
             type='text'
             id='userNameControl3'
@@ -30,6 +30,7 @@ export default function UpdateUser({ user, handleSubmit, handleUpdate }) {
             name='Password'
             defaultValue={user.Password}
             onChange={e => handleUpdate(e)}
+            minLength='8'
             placeholder='Enter a password'
             required />
         </Form.Group>
