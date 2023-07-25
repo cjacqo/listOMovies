@@ -41,12 +41,12 @@ export const SignupView = () => {
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit} className='row gy-2 gx-3 align-items-center'>
         <Row className='mb-3'>
-          <label
-            htmlFor='firstNameControl1'
-            className='col-form-label col-form-label-sm col-sm-3'>
-            First Name:
-          </label>
-          <Col className='col-sm-9'>
+          <Col>
+            <label
+              htmlFor='firstNameControl1'
+              className='col-form-label col-form-label-sm'>
+                First Name:
+            </label>
             <input
               type='text'
               className='form-control'
@@ -57,14 +57,12 @@ export const SignupView = () => {
               required
             />
           </Col>
-        </Row>
-        <Row className='mb-3'>
-          <label
-            htmlFor='lastNameControl1'
-            className='col-form-label col-form-label-sm col-sm-3'>
-            Last Name:
-          </label>
-          <Col className='col-sm-9'>
+          <Col>
+            <label
+              htmlFor='lastNameControl1'
+              className='col-form-label col-form-label-sm'>
+                Last Name:
+            </label>
             <input
               type='text'
               className='form-control'
