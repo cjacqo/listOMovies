@@ -8,9 +8,9 @@ import { UpdateUser } from './update-user'
 export function ProfileView({ movies, onUpdatedUserInfo }) {
 
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
-  console.log(user)
   
   const favoriteMoviesList = movies.filter(m => user.FavoriteMovies.includes(m._id))
+  console.log(favoriteMoviesList.length)
 
   const handleSubmit = (e) => {}
   const handleUpdate = (e) => {}
@@ -37,7 +37,7 @@ export function ProfileView({ movies, onUpdatedUserInfo }) {
           </Card>
         </Col>
       </Row>
-      {favoriteMoviesList === 0 ? (
+      {favoriteMoviesList.length !== 0 ? (
         <FavoriteMovies
           favoriteMoviesList={favoriteMoviesList}
           removeFav={removeFav}
