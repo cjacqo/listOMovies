@@ -6,6 +6,7 @@ import { SignupView } from '../signup-view/signup-view'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem('user'))
@@ -26,50 +27,52 @@ export const MainView = () => {
   }, [token])
 
   return (
-    <Row className='justify-content-md-center'>
-      {!user ? (
-        <>
-          <Col className='text-bg-dark'>
-            <LoginView onLoggedIn={(user, token) => {
-              setUser(user)
-              setToken(token)
-            }} />
-          </Col>
-          <Col className='text-center align-self-center' md={1}>
-            <h4>Or</h4>
-          </Col>
-          <Col className='text-bg-dark'>
-            <SignupView />
-          </Col>
-        </>
-      ) : selectedMovie ? (
-        <Col md={8}>
-          <MovieView
-            movie={selectedMovie}
-            onBackClick={() => setSelectedMovie(null)}
-          />
-        </Col>
-      ) : movies.length === 0 ? (
-        <div>The list is empty!</div>
-      ) : (
-        <>
-          {movies.map(movie => (
-            <Col key={movie._id} className='mb-5' md={3}>
-              <MovieCard
-                key={movie._id}
-                movie={movie}
-                onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)}
-              />
+    <BrowserRouter>
+      <Row className='justify-content-md-center'>
+        {!user ? (
+          <>
+            <Col className='text-bg-dark'>
+              <LoginView onLoggedIn={(user, token) => {
+                setUser(user)
+                setToken(token)
+              }} />
             </Col>
-          ))}
-          <Button
-            className='btn-danger'
-            onClick={() => { setUser(null); setToken(null); localStorage.clear() }}>
-              Logout
-          </Button>
-        </>
-      )
-      }
-    </Row>
+            <Col className='text-center align-self-center' md={1}>
+              <h4>Or</h4>
+            </Col>
+            <Col className='text-bg-dark'>
+              <SignupView />
+            </Col>
+          </>
+        ) : selectedMovie ? (
+          <Col md={8}>
+            <MovieView
+              movie={selectedMovie}
+              onBackClick={() => setSelectedMovie(null)}
+            />
+          </Col>
+        ) : movies.length === 0 ? (
+          <div>The list is empty!</div>
+        ) : (
+          <>
+            {movies.map(movie => (
+              <Col key={movie._id} className='mb-5' md={3}>
+                <MovieCard
+                  key={movie._id}
+                  movie={movie}
+                  onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)}
+                />
+              </Col>
+            ))}
+            <Button
+              className='btn-danger'
+              onClick={() => { setUser(null); setToken(null); localStorage.clear() }}>
+                Logout
+            </Button>
+          </>
+        )
+        }
+      </Row>
+    </BrowserRouter>
   )
 }
