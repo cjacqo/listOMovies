@@ -24,8 +24,6 @@ export const MainView = () => {
     })
       .then(res => res.json())
       .then(data => setMovies(data))
-    
-    console.log(movies)
   }, [token])
 
   return (

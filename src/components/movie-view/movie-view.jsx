@@ -14,8 +14,6 @@ export const MovieView = ({ movies }) => {
   const [genre, setGenre] = useState(null)
   const [directors, setDirectors] = useState([])
 
-  console.log(movies)
-  
   const movie = movies.find(m => m._id === movieId)
 
   useEffect(() => {
