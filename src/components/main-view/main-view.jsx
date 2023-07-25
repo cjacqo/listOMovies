@@ -25,7 +25,7 @@ export const MainView = () => {
   }, [token])
 
   return (
-    <Row className='justify-content-md-center align-items-md-center'>
+    <Row className='justify-content-md-center'>
       {!user ? (
         <>
           <Col className='text-bg-dark'>
@@ -34,10 +34,10 @@ export const MainView = () => {
               setToken(token)
             }} />
           </Col>
-          <Col>
-            Or
+          <Col className='text-center align-self-center' md={1}>
+            <h4>Or</h4>
           </Col>
-          <Col>
+          <Col className='text-bg-dark'>
             <SignupView />
           </Col>
         </>

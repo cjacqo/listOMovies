@@ -37,7 +37,7 @@ export const SignupView = () => {
   }
 
   return (
-    <>
+    <div className='mx-3 my-4'>
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit} className='row gy-2 gx-3 align-items-center'>
         <Row className='mb-3'>
@@ -152,6 +152,6 @@ export const SignupView = () => {
             className='btn btn-primary col-sm-10'>Submit</button>
         </Row>
       </form>
-    </>
+    </div>
   )
 }
