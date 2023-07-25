@@ -9,9 +9,12 @@ import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 
-export const MovieView = ({ movie }) => {
+export const MovieView = ({ movies }) => {
+  const { movieId } = useParams()
   const [genre, setGenre] = useState(null)
   const [directors, setDirectors] = useState([])
+
+  const movie = movies.find(m => m._id === movieId)
 
   useEffect(() => {
     fetch('https://list-o-movies-311c22237892.herokuapp.com/genres')
@@ -58,11 +61,12 @@ export const MovieView = ({ movie }) => {
 }
 
 MovieView.propTypes = {
-  movie: PropTypes.shape({
-    Title: PropTypes.string.isRequired,
-    ImagePath: PropTypes.string.isRequired,
-    Description: PropTypes.string.isRequired,
-    Genre: PropTypes.string.isRequired,
-    Directors: PropTypes.array.isRequired
-  }).isRequired
+  movies: PropTypes.array.isRequired
+  // movie: PropTypes.shape({
+  //   Title: PropTypes.string.isRequired,
+  //   ImagePath: PropTypes.string.isRequired,
+  //   Description: PropTypes.string.isRequired,
+  //   Genre: PropTypes.string.isRequired,
+  //   Directors: PropTypes.array.isRequired
+  // }).isRequired
 }
