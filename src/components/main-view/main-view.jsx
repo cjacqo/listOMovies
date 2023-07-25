@@ -6,7 +6,6 @@ import { SignupView } from '../signup-view/signup-view'
 import { NavigationBar } from '../naviation-bar/navigation-bar'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Button from 'react-bootstrap/Button'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
 export const MainView = () => {

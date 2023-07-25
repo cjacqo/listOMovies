@@ -8,7 +8,7 @@ import './index.scss'
 // Main component
 const App = () => {
   return (
-    <Container className="w-100 mx-0 px-0 container-xl">
+    <Container>
       <MainView />
     </Container>
   )
