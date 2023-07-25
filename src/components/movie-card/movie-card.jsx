@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types'
+import { useState } from 'react'
 import { Button, Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 export const MovieCard = ({ movie }) => {
-  console.log(movie)
   return (
     <Card className='h-100 pointer movie-card text-bg-warning'>
       <Card.Img
