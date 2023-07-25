@@ -14,6 +14,10 @@ export function ProfileView({ movies, onUpdatedUserInfo }) {
 
   const handleSubmit = (e) => {}
   const handleUpdate = (e) => {}
+  const removeFav = (id) => {
+    let token = localStorage.getItem('token')
+    let url = `https://list-o-movies-311c22237892.herokuapp.com/users/${localStorage.getItem('user')}/movies/${id}`
+  }
 
   return (
     <Container>
@@ -34,7 +38,10 @@ export function ProfileView({ movies, onUpdatedUserInfo }) {
         </Col>
       </Row>
       {favoriteMoviesList === 0 ? (
-        <FavoriteMovies favoriteMoviesList={favoriteMoviesList} />
+        <FavoriteMovies
+          favoriteMoviesList={favoriteMoviesList}
+          removeFav={removeFav}
+        />
       ) : (
         <div>No favorite movies</div>
       )}

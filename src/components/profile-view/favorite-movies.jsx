@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Row } from 'react-bootstrap'
 
-export function FavoriteMovies() {
+export function FavoriteMovies({ favoriteMoviesList, removeFav }) {
   return (
     <Row>
       <Col xs={12}>
