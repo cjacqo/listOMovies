@@ -8,7 +8,7 @@ import './index.scss'
 // Main component
 const App = () => {
   return (
-    <Container className="d-flex h-75 justify-content-center align-items-center">
+    <Container className="d- my-5 container-xl justify-content-center align-items-center">
       <MainView />
     </Container>
   )
