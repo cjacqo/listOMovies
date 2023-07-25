@@ -2,13 +2,15 @@ import { createRoot } from "react-dom/client"
 
 import { MainView } from "./components/main-view/main-view"
 
-// Import statement to indicate that you need to bundle `./index.scss`
+import Container from 'react-bootstrap/Container'
 import './index.scss'
 
 // Main component
 const App = () => {
   return (
-    <MainView />
+    <Container className="d-flex my-5 container-xl justify-content-center align-items-center">
+      <MainView />
+    </Container>
   )
 }
 

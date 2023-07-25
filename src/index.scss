@@ -1,5 +1,30 @@
+$primary: SeaGreen;
+$body-bg: Honeydew;
+
+@import '~bootstrap/scss/bootstrap.scss';
+
 $color: steelblue;
+
+body {
+  height: 100vh;
+}
+
+#root {
+  height: 100%;
+}
+
+.pointer {
+  cursor: pointer;
+}
 
 .list-o-movies {
   color: $color;
+}
+
+.movie-card:hover {
+  box-shadow: 1px 1px 3px #ccc;
+}
+
+.movie-title {
+  font-size: 1rem;
 }

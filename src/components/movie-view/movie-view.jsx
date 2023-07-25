@@ -1,6 +1,11 @@
 import './movie-view.scss'
 import { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
 
 export const MovieView = ({ movie, onBackClick }) => {
   const [genre, setGenre] = useState(null)
@@ -26,22 +31,28 @@ export const MovieView = ({ movie, onBackClick }) => {
 
   const directorTitle = movie.Directors.length > 1 ? 'Directors' : 'Director'
   return (
-    <div>
-      <img src={movie.ImagePath} alt={movie.Title} />
-      <div>
-        <p>Title: {movie.Title}</p>
-        <p>Description: {movie.Description}</p>
-        <p>Genre: {genre}</p>
-        <p>{directorTitle}: {directors.map((director, i) => <span key={i}>{director.Name}&nbsp;</span>)}</p>
-      </div>
-      <div>
-        <button
-          className='back-button'
-          onClick={onBackClick}>
-            Back
-        </button>
-      </div>
-    </div>
+    <Card className='h-100 w-100'>
+      <Container className='m-0 p-0'>
+        <Row className='g-0' xs={1} sm={1} md={2}>
+          <Col>
+            <img className='img-fluid' src={movie.ImagePath} alt={movie.Title} />
+          </Col>
+          <Col>
+            <div className='card-body'>
+              <h5>{movie.Title}</h5>
+              <p className='card-text'><strong>Description:</strong>{movie.Description}</p>
+              <p>Genre: {genre}</p>
+              <p>{directorTitle}: {directors.map((director, i) => <span key={i}>{director.Name}&nbsp;</span>)}</p>
+              <Button
+                className='btn-dark'
+                onClick={onBackClick}>
+                  Back
+              </Button>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </Card>
   )
 }
 

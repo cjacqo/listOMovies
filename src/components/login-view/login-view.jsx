@@ -1,5 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Button from 'react-bootstrap/Button'
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState('')
@@ -32,26 +35,53 @@ export const LoginView = ({ onLoggedIn }) => {
   }
   
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Username:
-        <input
-          type="text"
-          value={username}
-          onChange={e => setUsername(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Password
-        <input
-          type="password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-          required
-        />
-      </label>
-      <button type="submit">Submit</button>
-    </form>
+    <div className='mx-3 my-4'>
+      <h1>Login</h1>
+      <form onSubmit={handleSubmit} className='row mt-5 gy-2 gx-3 h-100 justify-content-center align-items-center'>
+          <Row className='mb-4'>
+            <label
+              htmlFor='usernameControl1'
+              className='col-form-label col-sm-3'>
+                Username:
+              </label>
+            <Col className='col-sm-9'>
+              <input
+                type='text'
+                className='form-control'
+                id='usernameControl1'
+                placeholder='Username...'
+                value={username}
+                onChange={e => setUsername(e.target.value)}
+                required
+              />
+            </Col>
+          </Row>
+          <Row className='mb-5'>
+            <label
+              htmlFor='passwordControl1'
+              className='col-form-label col-sm-3'>
+                Password:
+              </label>
+            <Col className='col-sm-9'>
+              <input
+                type='password'
+                className='form-control'
+                id='passwordControl1'
+                placeholder='Password...'
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                required
+              />
+            </Col>
+          </Row>
+          <Row className='justify-content-center'>
+            <Button
+              type='submit'
+              className='btn btn-primary col-sm-10'>
+                Submit
+            </Button>
+          </Row>
+      </form>
+    </div>
   )
 }
