@@ -1,6 +1,8 @@
 import './movie-view.scss'
 import { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 
@@ -28,21 +30,25 @@ export const MovieView = ({ movie, onBackClick }) => {
 
   const directorTitle = movie.Directors.length > 1 ? 'Directors' : 'Director'
   return (
-    <Card>
-      <img className='w-75' src={movie.ImagePath} alt={movie.Title} />
-      <div>
-        <p>Title: {movie.Title}</p>
-        <p>Description: {movie.Description}</p>
-        <p>Genre: {genre}</p>
-        <p>{directorTitle}: {directors.map((director, i) => <span key={i}>{director.Name}&nbsp;</span>)}</p>
-      </div>
-      <div>
-        <Button
-          className='btn-light'
-          onClick={onBackClick}>
-            Back
-        </Button>
-      </div>
+    <Card className='h-100'>
+      <Row className='g-0'>
+        <Col className='col-md-4'>
+          <img className='img-fluid' src={movie.ImagePath} alt={movie.Title} />
+        </Col>
+        <Col className='col-md-8'>
+          <div className='card-body'>
+            <h5>{movie.Title}</h5>
+            <p className='card-text'>Description: {movie.Description}</p>
+            <p>Genre: {genre}</p>
+            <p>{directorTitle}: {directors.map((director, i) => <span key={i}>{director.Name}&nbsp;</span>)}</p>
+            <Button
+              className='btn-dark'
+              onClick={onBackClick}>
+                Back
+            </Button>
+          </div>
+        </Col>
+      </Row>
     </Card>
   )
 }
