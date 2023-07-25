@@ -27546,6 +27546,8 @@ const MovieView = ({ movie, onBackClick })=>{
             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
                 className: "g-0",
                 xs: 1,
+                sm: 1,
+                md: 2,
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                         className: "col-sm-4",

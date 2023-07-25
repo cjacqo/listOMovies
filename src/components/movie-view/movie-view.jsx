@@ -33,7 +33,7 @@ export const MovieView = ({ movie, onBackClick }) => {
   return (
     <Card className='h-100 w-100'>
       <Container className='m-0 p-0'>
-        <Row className='g-0' xs={1}>
+        <Row className='g-0' xs={1} sm={1} md={2}>
           <Col className='col-sm-4'>
             <img className='img-fluid' src={movie.ImagePath} alt={movie.Title} />
           </Col>
