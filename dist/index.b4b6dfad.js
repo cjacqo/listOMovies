@@ -27448,7 +27448,8 @@ const MainView = ()=>{
                                     to: "/login",
                                     replace: true
                                 }, void 0, false, void 0, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _profileView.ProfileView), {
-                                    movies: movies
+                                    movies: movies,
+                                    user: user
                                 }, void 0, false, void 0, void 0)
                             }, void 0, false)
                         }, void 0, false, {
@@ -47619,16 +47620,21 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactRouterDom = require("react-router-dom");
+var _s = $RefreshSig$();
 function ProfileView({ movies, onUpdatedUserInfo }) {
+    _s();
+    const [user, setUser] = (0, _react.useState)(JSON.parse(localStorage.getItem("user")));
+    console.log(user);
     // const favoriteMovieList = movies.filter(m => user.FavoriteMovies.include(m._id))
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "Profile View"
     }, void 0, false, {
         fileName: "src/components/profile-view/profile-view.jsx",
-        lineNumber: 9,
+        lineNumber: 12,
         columnNumber: 5
     }, this);
 }
+_s(ProfileView, "aKjifIVj93QhqLKlmls0V6I3HyU=");
 _c = ProfileView;
 var _c;
 $RefreshReg$(_c, "ProfileView");
