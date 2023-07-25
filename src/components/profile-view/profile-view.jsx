@@ -16,7 +16,7 @@ export function ProfileView({ movies, onUpdatedUserInfo }) {
   const handleUpdate = (e) => {}
   const removeFav = (id) => {
     let token = localStorage.getItem('token')
-    let url = `https://list-o-movies-311c22237892.herokuapp.com/users/${localStorage.getItem('user')}/movies/${id}`
+    let url = `https://list-o-movies-311c22237892.herokuapp.com/users/${user.UserName}/movies/${encodeURIComponent(id)}`
 
     fetch(url, {
       method: 'DELETE',

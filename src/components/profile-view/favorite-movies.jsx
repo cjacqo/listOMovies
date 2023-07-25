@@ -21,7 +21,7 @@ export function FavoriteMovies({ favoriteMoviesList, removeFav }) {
               <Link>
                 <h4>{movie.Title}</h4>
               </Link>
-              <button variant="secondary" onClick={() => removeFav(movies._id)}>Remove from list</button>
+              <button variant="secondary" onClick={() => removeFav(movie._id)}>Remove from list</button>
             </Col>
           )
         })}

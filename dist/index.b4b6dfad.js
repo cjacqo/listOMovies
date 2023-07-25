@@ -47634,7 +47634,7 @@ function ProfileView({ movies, onUpdatedUserInfo }) {
     const handleUpdate = (e)=>{};
     const removeFav = (id)=>{
         let token = localStorage.getItem("token");
-        let url = `https://list-o-movies-311c22237892.herokuapp.com/users/${localStorage.getItem("user")}/movies/${id}`;
+        let url = `https://list-o-movies-311c22237892.herokuapp.com/users/${user.UserName}/movies/${encodeURIComponent(id)}`;
         fetch(url, {
             method: "DELETE",
             headers: {
@@ -47849,7 +47849,7 @@ function FavoriteMovies({ favoriteMoviesList, removeFav }) {
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                                 variant: "secondary",
-                                onClick: ()=>removeFav(movies._id),
+                                onClick: ()=>removeFav(movie._id),
                                 children: "Remove from list"
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/favorite-movies.jsx",
