@@ -27514,7 +27514,7 @@ var _cardDefault = parcelHelpers.interopDefault(_card);
 var _button = require("react-bootstrap/Button");
 var _buttonDefault = parcelHelpers.interopDefault(_button);
 var _s = $RefreshSig$();
-const MovieView = ({ movie, onBackClick })=>{
+const MovieView = ({ movie })=>{
     _s();
     const [genre, setGenre] = (0, _react.useState)(null);
     const [directors, setDirectors] = (0, _react.useState)([]);
@@ -27619,7 +27619,6 @@ const MovieView = ({ movie, onBackClick })=>{
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
                                     className: "btn-dark",
-                                    onClick: onBackClick,
                                     children: "Back"
                                 }, void 0, false, {
                                     fileName: "src/components/movie-view/movie-view.jsx",
@@ -27663,8 +27662,7 @@ MovieView.propTypes = {
         Description: (0, _propTypesDefault.default).string.isRequired,
         Genre: (0, _propTypesDefault.default).string.isRequired,
         Directors: (0, _propTypesDefault.default).array.isRequired
-    }).isRequired,
-    onBackClick: (0, _propTypesDefault.default).func.isRequired
+    }).isRequired
 };
 var _c;
 $RefreshReg$(_c, "MovieView");
@@ -29799,7 +29797,7 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _reactBootstrap = require("react-bootstrap");
-const MovieCard = ({ movie, onMovieClick })=>{
+const MovieCard = ({ movie })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
         className: "h-100 pointer movie-card text-bg-warning",
         onClick: ()=>onMovieClick(movie),
@@ -29839,8 +29837,7 @@ _c = MovieCard;
 MovieCard.propTypes = {
     movie: (0, _propTypesDefault.default).shape({
         Title: (0, _propTypesDefault.default).string.isRequired
-    }).isRequired,
-    onMovieClick: (0, _propTypesDefault.default).func.isRequired
+    }).isRequired
 };
 var _c;
 $RefreshReg$(_c, "MovieCard");

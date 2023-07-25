@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import { Button, Card } from 'react-bootstrap'
 
-export const MovieCard = ({ movie, onMovieClick }) => {
+export const MovieCard = ({ movie }) => {
   return (
     <Card className='h-100 pointer movie-card text-bg-warning'
       onClick={() => onMovieClick(movie)}>
@@ -19,6 +19,5 @@ export const MovieCard = ({ movie, onMovieClick }) => {
 MovieCard.propTypes = {
   movie: PropTypes.shape({
     Title: PropTypes.string.isRequired
-  }).isRequired,
-  onMovieClick: PropTypes.func.isRequired
+  }).isRequired
 }

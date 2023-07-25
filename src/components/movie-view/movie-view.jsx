@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 
-export const MovieView = ({ movie, onBackClick }) => {
+export const MovieView = ({ movie }) => {
   const [genre, setGenre] = useState(null)
   const [directors, setDirectors] = useState([])
 
@@ -44,8 +44,7 @@ export const MovieView = ({ movie, onBackClick }) => {
               <p>Genre: {genre}</p>
               <p>{directorTitle}: {directors.map((director, i) => <span key={i}>{director.Name}&nbsp;</span>)}</p>
               <Button
-                className='btn-dark'
-                onClick={onBackClick}>
+                className='btn-dark'>
                   Back
               </Button>
             </div>
@@ -63,6 +62,5 @@ MovieView.propTypes = {
     Description: PropTypes.string.isRequired,
     Genre: PropTypes.string.isRequired,
     Directors: PropTypes.array.isRequired
-  }).isRequired,
-  onBackClick: PropTypes.func.isRequired
+  }).isRequired
 }
