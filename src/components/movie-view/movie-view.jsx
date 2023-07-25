@@ -14,6 +14,8 @@ export const MovieView = ({ movies }) => {
   const [genre, setGenre] = useState(null)
   const [directors, setDirectors] = useState([])
 
+  console.log(movies)
+  
   const movie = movies.find(m => m._id === movieId)
 
   useEffect(() => {
@@ -48,10 +50,11 @@ export const MovieView = ({ movies }) => {
               <p className='card-text'><strong>Description:</strong>{movie.Description}</p>
               <p>Genre: {genre}</p>
               <p>{directorTitle}: {directors.map((director, i) => <span key={i}>{director.Name}&nbsp;</span>)}</p>
-              <Button
-                className='btn-dark'>
+              <Link to={`/`}>
+                <Button className='btn-dark'>
                   Back
-              </Button>
+                </Button>
+              </Link>
             </div>
           </Col>
         </Row>
