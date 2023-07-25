@@ -2951,7 +2951,7 @@ var _indexScss = require("./index.scss");
 // Main component
 const App = ()=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _containerDefault.default), {
-        className: "d-flex my-5 container-xl justify-content-center align-items-center",
+        className: "w-100 mx-0 px-0 container-xl",
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _mainView.MainView), {}, void 0, false, {
             fileName: "src/index.jsx",
             lineNumber: 12,
@@ -47532,7 +47532,7 @@ const NavigationBar = ({ user, onLoggedOut })=>{
                                 children: [
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
                                         as: (0, _reactRouterDom.Link),
-                                        to: "/movies",
+                                        to: "/",
                                         children: "Movies"
                                     }, void 0, false, {
                                         fileName: "src/components/naviation-bar/navigation-bar.jsx",
