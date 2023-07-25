@@ -1,9 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Row } from 'react-bootstrap'
 
 export function FavoriteMovies() {
   return (
-    <div>
+    <Row>
       <h2>Favorite Movies</h2>
       {favoriteMoviesList.map(movie => {
         return (
@@ -16,6 +17,6 @@ export function FavoriteMovies() {
           </div>
         )
       })}
-    </div>
+    </Row>
   )
 }
