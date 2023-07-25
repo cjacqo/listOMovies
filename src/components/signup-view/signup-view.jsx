@@ -39,7 +39,7 @@ export const SignupView = () => {
   return (
     <div className='mx-3 my-4'>
       <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit} className='row gy-2 gx-3 align-items-center'>
+      <form onSubmit={handleSubmit} className='row gy-2 gx-3 justify-content-center align-items-center'>
         <Row className='mb-3'>
           <Col>
             <label

@@ -28472,7 +28472,7 @@ const LoginView = ({ onLoggedIn })=>{
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
                 onSubmit: handleSubmit,
-                className: "row gy-2 gx-3 align-items-center",
+                className: "row gy-2 gx-3 justify-content-center align-items-center",
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
                         className: "mb-3",
@@ -29705,7 +29705,7 @@ const SignupView = ()=>{
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
                 onSubmit: handleSubmit,
-                className: "row gy-2 gx-3 align-items-center",
+                className: "row gy-2 gx-3 justify-content-center align-items-center",
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
                         className: "mb-3",
