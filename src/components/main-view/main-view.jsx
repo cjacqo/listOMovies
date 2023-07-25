@@ -28,7 +28,7 @@ export const MainView = () => {
     <Row className='justify-content-md-center align-items-md-center'>
       {!user ? (
         <>
-          <Col>
+          <Col className='text-bg-dark'>
             <LoginView onLoggedIn={(user, token) => {
               setUser(user)
               setToken(token)
