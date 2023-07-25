@@ -75,12 +75,12 @@ export const SignupView = () => {
           </Col>
         </Row>
         <Row className='mb-3'>
-          <label
-            htmlFor='userNameControl2'
-            className='col-form-label col-form-label-sm col-sm-3'>
-            Username:
-          </label>
-          <Col className='col-sm-9'>
+          <Col>
+            <label
+              htmlFor='userNameControl2'
+              className='col-form-label col-form-label-sm col-sm-3'>
+              Username:
+            </label>
             <input
               type='text'
               className='form-control'
@@ -92,14 +92,12 @@ export const SignupView = () => {
               minLength='5'
             />
           </Col>
-        </Row>
-        <Row className='mb-3'>
-          <label
-            htmlFor='passwordControl2'
-            className='col-form-label col-form-label-sm col-sm-3'>
-            Password:
-          </label>
-          <Col className='col-sm-9'>
+          <Col>
+            <label
+              htmlFor='passwordControl2'
+              className='col-form-label col-form-label-sm col-sm-3'>
+              Password:
+            </label>
             <input
               type='password'
               className='form-control'
@@ -112,12 +110,12 @@ export const SignupView = () => {
           </Col>
         </Row>
         <Row className='mb-3'>
-          <label
-            htmlFor='emailControl1'
-            className='col-form-label col-form-label-sm col-sm-3'>
-            Email:
-          </label>
-          <Col className='col-sm-9'>
+          <Col>
+            <label
+              htmlFor='emailControl1'
+              className='col-form-label col-form-label-sm col-sm-3'>
+              Email:
+            </label>
             <input
               type='email'
               className='form-control'
@@ -128,14 +126,12 @@ export const SignupView = () => {
               required
             />
           </Col>
-        </Row>
-        <Row className='mb-3'>
-          <label
-            htmlFor='birthdayControl1'
-            className='col-form-label col-form-label-sm col-sm-3'>
-            Birthday:
-          </label>
-          <Col className='col-sm-9'>
+          <Col>
+            <label
+              htmlFor='birthdayControl1'
+              className='col-form-label col-form-label-sm col-sm-3'>
+              Birthday:
+            </label>
             <input
               type='date'
               className='form-control'
@@ -149,7 +145,7 @@ export const SignupView = () => {
         <Row className='justify-content-center'>
           <button
             type='submit'
-            className='btn btn-primary col-sm-10'>Submit</button>
+            className='btn btn-primary col-sm-12'>Submit</button>
         </Row>
       </form>
     </div>
