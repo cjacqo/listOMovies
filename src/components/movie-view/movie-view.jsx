@@ -1,5 +1,7 @@
 import './movie-view.scss'
 import { useEffect, useState } from 'react'
+import { useParams } from 'react-router'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
