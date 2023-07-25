@@ -11,7 +11,7 @@ export const MovieCard = ({ movie }) => {
         alt={movie.Title} />
       <Card.Body className="card-body">
         <Card.Title className='movie-title'>{movie.Title}</Card.Title>
-        <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
+        <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
           <Button variant='link'>Open</Button>
         </Link>
       </Card.Body>
@@ -21,6 +21,8 @@ export const MovieCard = ({ movie }) => {
 
 MovieCard.propTypes = {
   movie: PropTypes.shape({
-    Title: PropTypes.string.isRequired
+    Title: PropTypes.string.isRequired,
+    ImagePath: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired
   }).isRequired
 }
