@@ -5,7 +5,9 @@ import { Row } from 'react-bootstrap'
 export function FavoriteMovies() {
   return (
     <Row>
-      <h2>Favorite Movies</h2>
+      <Col xs={12}>
+        <h2>Favorite Movies</h2>
+      </Col>
       {favoriteMoviesList.map(movie => {
         return (
           <div key={movie._id}>

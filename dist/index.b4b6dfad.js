@@ -47793,8 +47793,15 @@ var _reactBootstrap = require("react-bootstrap");
 function FavoriteMovies() {
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
         children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                children: "Favorite Movies"
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Col, {
+                xs: 12,
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                    children: "Favorite Movies"
+                }, void 0, false, {
+                    fileName: "src/components/profile-view/favorite-movies.jsx",
+                    lineNumber: 9,
+                    columnNumber: 9
+                }, this)
             }, void 0, false, {
                 fileName: "src/components/profile-view/favorite-movies.jsx",
                 lineNumber: 8,
@@ -47808,7 +47815,7 @@ function FavoriteMovies() {
                             alt: movie.Title
                         }, void 0, false, {
                             fileName: "src/components/profile-view/favorite-movies.jsx",
-                            lineNumber: 12,
+                            lineNumber: 14,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
@@ -47816,12 +47823,12 @@ function FavoriteMovies() {
                                 children: movie.Title
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/favorite-movies.jsx",
-                                lineNumber: 14,
+                                lineNumber: 16,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "src/components/profile-view/favorite-movies.jsx",
-                            lineNumber: 13,
+                            lineNumber: 15,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -47830,13 +47837,13 @@ function FavoriteMovies() {
                             children: "Remove from list"
                         }, void 0, false, {
                             fileName: "src/components/profile-view/favorite-movies.jsx",
-                            lineNumber: 16,
+                            lineNumber: 18,
                             columnNumber: 13
                         }, this)
                     ]
                 }, movie._id, true, {
                     fileName: "src/components/profile-view/favorite-movies.jsx",
-                    lineNumber: 11,
+                    lineNumber: 13,
                     columnNumber: 11
                 }, this);
             })
