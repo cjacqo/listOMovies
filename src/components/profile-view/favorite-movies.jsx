@@ -12,7 +12,7 @@ export function FavoriteMovies({ movies, favoriteMoviesList, onAddToFavorites })
       </Col>
       <Row>
         {
-          movies && movies.filter(movie => favoriteMoviesList.includes(movie._id)).map(movie => (
+          favoriteMoviesList.map(movie => (
             <Col
               key={movie._id}
               xs={12}

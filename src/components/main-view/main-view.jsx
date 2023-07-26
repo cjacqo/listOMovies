@@ -34,8 +34,6 @@ export const MainView = () => {
   }, [user])
 
   const handleAddToFavs = async (movieId) => {
-    console.log(favMovies)
-
     if (favMovies.includes(movieId)) {
       alert('This movie is already in your favorites')
       return
@@ -57,7 +55,6 @@ export const MainView = () => {
   }
 
   const updateFavoriteMovies = updatedFavMovies => {
-    console.log(updatedFavMovies)
     user.FavoriteMovies = updatedFavMovies
     localStorage.setItem('user', JSON.stringify(user))
   }
