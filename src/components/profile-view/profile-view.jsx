@@ -10,8 +10,24 @@ export function ProfileView({ movies, user }) {
 
   const favoriteMoviesList = movies.filter(m => user.FavoriteMovies.includes(m._id))
 
-  const handleSubmit = (e) => {}
-  const handleUpdate = (e) => {}
+  const handleUpdate = (e, updatedUser) => {
+    e.preventDefault()
+    fetch(`https://list-o-movies-311c22237892.herokuapp.com/users/${user.UserName}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      },
+      body: JSON.stringify({
+        UserName: updatedUser.UserName,
+        Password: updatedUser.Password,
+        Email: updatedUser.Email
+      })
+    }).then(res => {
+      if (res.ok) return res.json()
+    })
+    .then(data => console.log(data))
+  }
 
   return (
     <Container>
@@ -26,7 +42,7 @@ export function ProfileView({ movies, user }) {
         <Col xs={12} sm={8}>
           <Card>
             <Card.Body>
-              <UpdateUser user={user} handleSubmit={handleSubmit} handleUpdate={handleUpdate} />
+              <UpdateUser user={user} handleSubmit={handleUpdate} />
             </Card.Body>
           </Card>
         </Col>

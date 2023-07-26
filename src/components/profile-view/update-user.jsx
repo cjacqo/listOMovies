@@ -1,17 +1,27 @@
-import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+import React, { useEffect, useState } from 'react'
 import { Form } from 'react-bootstrap'
 
-export function UpdateUser({ user, handleSubmit, handleUpdate }) {
+export function UpdateUser({ user, handleSubmit }) {
   const [updatedUserInfo, setUpdatedUserInfo] = useState({
     UserName: '',
     Password: '',
     Email: ''
   })
 
+  useEffect(() => {
+    console.log(updatedUserInfo)
+  }, [updatedUserInfo])
+  
+  const handleUserUpdate = e => {
+    const { name, value } = e.target
+    setUpdatedUserInfo(prev => ({ ...prev, [name]: value }))
+  }
+
   return (
     <>
       <h4>Update</h4>
-      <Form onSubmit={e => handleSubmit(e)}>
+      <Form onSubmit={e => handleSubmit(e, updatedUserInfo)}>
         <Form.Group>
           <Form.Label htmlFor='userNameControl3'>
             Username:
@@ -19,9 +29,9 @@ export function UpdateUser({ user, handleSubmit, handleUpdate }) {
           <Form.Control
             type='text'
             id='userNameControl3'
-            name='Username'
+            name='UserName'
             defaultValue={user.UserName}
-            onChange={e => handleUpdate(e)}
+            onChange={e => handleUserUpdate(e)}
             placeholder='Enter a username'
             required />
         </Form.Group>
@@ -34,10 +44,9 @@ export function UpdateUser({ user, handleSubmit, handleUpdate }) {
             type='password'
             id='passwordControl3'
             name='Password'
-            onChange={e => handleUpdate(e)}
+            onChange={e => handleUserUpdate(e)}
             minLength='8'
-            placeholder='Enter a password'
-            required />
+            placeholder='Enter a password' />
         </Form.Group>
         
         <Form.Group>
@@ -49,7 +58,7 @@ export function UpdateUser({ user, handleSubmit, handleUpdate }) {
             id='emailControl2'
             name='Email'
             defaultValue={user.Email}
-            onChange={e => handleUpdate(e)}
+            onChange={e => handleUserUpdate(e)}
             placeholder='Enter an email'
             required />
         </Form.Group>
@@ -60,4 +69,9 @@ export function UpdateUser({ user, handleSubmit, handleUpdate }) {
       </Form>
     </>
   )
+}
+
+UpdateUser.propTypes = {
+  user: PropTypes.object.isRequired,
+  handleSubmit: PropTypes.func.isRequired
 }
