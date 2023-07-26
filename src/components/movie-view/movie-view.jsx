@@ -9,7 +9,7 @@ import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 
-export const MovieView = ({ movies, user, token, setUser }) => {
+export const MovieView = ({ movies, onAddToFavorites }) => {
   const { movieId } = useParams()
   const [genre, setGenre] = useState(null)
   const [directors, setDirectors] = useState([])
@@ -35,6 +35,14 @@ export const MovieView = ({ movies, user, token, setUser }) => {
       })
   }, [movie])
 
+  useEffect(() => {
+    if (isFav) onAddToFavorites(movieId)
+  }, [isFav])
+
+  const handleFavoriteClick = () => {
+    setIsFav(!isFav)
+  }
+
   const directorTitle = movie.Directors.length > 1 ? 'Directors' : 'Director'
 
   return (
@@ -54,7 +62,7 @@ export const MovieView = ({ movies, user, token, setUser }) => {
                 isFav ? (
                   <Button>Remove from favorites</Button>
                 ) : (
-                  <Button>Add to favorites</Button>
+                  <Button onClick={() => handleFavoriteClick()}>Add to favorites</Button>
                 )
               }
               <Link to={`/`}>
@@ -72,9 +80,9 @@ export const MovieView = ({ movies, user, token, setUser }) => {
 
 MovieView.propTypes = {
   movies: PropTypes.array.isRequired,
-  user: PropTypes.object.isRequired,
-  token: PropTypes.string.isRequired,
-  setUser: PropTypes.func.isRequired
+  // user: PropTypes.object.isRequired,
+  // token: PropTypes.string.isRequired,
+  // setUser: PropTypes.func.isRequired
   // movie: PropTypes.shape({
   //   Title: PropTypes.string.isRequired,
   //   ImagePath: PropTypes.string.isRequired,

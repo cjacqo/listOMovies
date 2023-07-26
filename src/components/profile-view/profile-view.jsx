@@ -5,10 +5,8 @@ import { UserInfo } from './user-info'
 import { FavoriteMovies } from './favorite-movies'
 import { UpdateUser } from './update-user'
 
-export function ProfileView({ movies, onUpdatedUserInfo }) {
+export function ProfileView({ movies, favMovies, onAddToFavorites, user }) {
 
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
-  
   const favoriteMoviesList = movies.filter(m => user.FavoriteMovies.includes(m._id))
 
   const handleSubmit = (e) => {}
@@ -34,7 +32,9 @@ export function ProfileView({ movies, onUpdatedUserInfo }) {
       </Row>
       {favoriteMoviesList.length !== 0 ? (
         <FavoriteMovies
+          movies={movies}
           favoriteMoviesList={favoriteMoviesList}
+          onAddToFavorites={onAddToFavorites}
         />
       ) : (
         <div>No favorite movies</div>

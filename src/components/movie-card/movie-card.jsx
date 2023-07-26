@@ -1,9 +1,20 @@
 import PropTypes from 'prop-types'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button, Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-export const MovieCard = ({ movie }) => {
+export const MovieCard = ({ movie, fav, onAddToFavorites }) => {
+  const [isFav, setIsFav] = useState(fav)
+
+  useEffect(() => {
+    setIsFav(fav)
+  }, [fav])
+
+  const handleAddToFavorites = movieId => {
+    onAddToFavorites(movieId)
+    setIsFav(true)
+  }
+  
   return (
     <Card className='h-100 pointer movie-card text-bg-warning'>
       <Card.Img

@@ -15,6 +15,8 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null)
   const [token, setToken] = useState(storedToken ? storedToken : null)
   const [movies, setMovies] = useState([])
+  const [favMovies, setFavMovies] = useState(user?.FavoriteMovies || [])
+
 
   useEffect(() => {
     if (!token) return
@@ -25,6 +27,40 @@ export const MainView = () => {
       .then(res => res.json())
       .then(data => setMovies(data))
   }, [token])
+
+  useEffect(() => {
+    if (!user) setFavMovies([])
+    else setFavMovies(user.FavoriteMovies || [])
+  }, [user])
+
+  const handleAddToFavs = async (movieId) => {
+    console.log(favMovies)
+
+    if (favMovies.includes(movieId)) {
+      alert('This movie is already in your favorites')
+      return
+    }
+
+    try {
+      await fetch(`https://list-o-movies-311c22237892.herokuapp.com/users/${user.UserName}/movies/${movieId}`,
+      {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      const tempFavMovies = [...favMovies, movieId]
+      setFavMovies(tempFavMovies)
+      updateFavoriteMovies(tempFavMovies)
+    } catch (e) {
+      console.error('Error:', error)
+      alert('There was an error')
+    }
+  }
+
+  const updateFavoriteMovies = updatedFavMovies => {
+    console.log(updatedFavMovies)
+    user.FavoriteMovies = updatedFavMovies
+    localStorage.setItem('user', JSON.stringify(user))
+  }
 
   return (
     <BrowserRouter>
@@ -73,9 +109,7 @@ export const MainView = () => {
                   <Col md={8}>
                     <MovieView
                       movies={movies}
-                      user={user}
-                      token={token}
-                      setUser={user => setUser(user)}  />
+                      onAddToFavorites={movieId => handleAddToFavs(movieId)}  />
                   </Col>
                 )}
               </>
@@ -93,7 +127,10 @@ export const MainView = () => {
                   <>
                     {movies.map(movie => (
                       <Col className='mb-4' key={movie._id} md={3}>
-                        <MovieCard movie={movie} />
+                        <MovieCard
+                          movie={movie}
+                          fav={favMovies.includes(movie._id)}
+                          onAddToFavorites={movieId => handleAddToFavs(movieId)}  />
                       </Col>
                     ))}
                   </>
@@ -108,7 +145,11 @@ export const MainView = () => {
                 {!user ? (
                   <Navigate to='/login' replace />
                 ) : (
-                  <ProfileView movies={movies} user={user} />
+                  <ProfileView
+                    movies={movies}
+                    favMovies={favMovies}
+                    onAddToFavorites={handleAddToFavs}
+                    user={user} />
                 )}
               </>
             }
