@@ -149,9 +149,7 @@ export const MainView = () => {
                       <Col className='mb-4' key={movie._id} md={3}>
                         <MovieCard
                           movie={movie}
-                          fav={favMovies.includes(movie._id)}
-                          onAddToFavorites={movieId => handleAddToFavs(movieId)}
-                          onRemoveFromFavorites={movieId => handleRemoveFromFavs(movieId)}  />
+                          fav={favMovies.includes(movie._id)}  />
                       </Col>
                     ))}
                   </>
@@ -169,8 +167,6 @@ export const MainView = () => {
                   <ProfileView
                     movies={movies}
                     favMovies={favMovies}
-                    onAddToFavorites={handleAddToFavs}
-                    onRemoveFromFavorites={handleRemoveFromFavs}
                     user={user} />
                 )}
               </>

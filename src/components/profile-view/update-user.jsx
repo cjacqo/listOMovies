@@ -1,7 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Form } from 'react-bootstrap'
 
 export function UpdateUser({ user, handleSubmit, handleUpdate }) {
+  const [updatedUserInfo, setUpdatedUserInfo] = useState({
+    UserName: '',
+    Password: '',
+    Email: ''
+  })
+
   return (
     <>
       <h4>Update</h4>
@@ -28,7 +34,6 @@ export function UpdateUser({ user, handleSubmit, handleUpdate }) {
             type='password'
             id='passwordControl3'
             name='Password'
-            defaultValue={user.Password}
             onChange={e => handleUpdate(e)}
             minLength='8'
             placeholder='Enter a password'

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { Button, Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-export const MovieCard = ({ movie, fav, onAddToFavorites, onRemoveFromFavorites }) => {
+export const MovieCard = ({ movie, fav }) => {
   const [isFav, setIsFav] = useState(fav)
 
   useEffect(() => {
@@ -32,5 +32,6 @@ MovieCard.propTypes = {
     Title: PropTypes.string.isRequired,
     ImagePath: PropTypes.string.isRequired,
     _id: PropTypes.string.isRequired
-  }).isRequired
+  }).isRequired,
+  fav: PropTypes.bool.isRequired
 }

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React, { useEffect, useState } from 'react'
 import { Container, Row, Col, Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
@@ -5,7 +6,7 @@ import { UserInfo } from './user-info'
 import { FavoriteMovies } from './favorite-movies'
 import { UpdateUser } from './update-user'
 
-export function ProfileView({ movies, favMovies, onAddToFavorites, user }) {
+export function ProfileView({ movies, user }) {
 
   const favoriteMoviesList = movies.filter(m => user.FavoriteMovies.includes(m._id))
 
@@ -31,15 +32,15 @@ export function ProfileView({ movies, favMovies, onAddToFavorites, user }) {
         </Col>
       </Row>
       {favoriteMoviesList.length !== 0 ? (
-        <FavoriteMovies
-          movies={movies}
-          favoriteMoviesList={favoriteMoviesList}
-          onAddToFavorites={onAddToFavorites}
-        />
+        <FavoriteMovies favoriteMoviesList={favoriteMoviesList} />
       ) : (
         <div>No favorite movies</div>
       )}
     </Container>
   )
-  
+}
+
+ProfileView.propTypes = {
+  movies: PropTypes.array.isRequired,
+  user: PropTypes.object.isRequired
 }
