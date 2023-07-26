@@ -176,49 +176,6 @@ export const MainView = () => {
               </>
             }
           />
-          {/* {!user ? (
-            <>
-              <Col className='text-bg-dark'>
-                <LoginView onLoggedIn={(user, token) => {
-                  setUser(user)
-                  setToken(token)
-                }} />
-              </Col>
-              <Col className='text-center align-self-center' md={1}>
-                <h4>Or</h4>
-              </Col>
-              <Col className='text-bg-dark'>
-                <SignupView />
-              </Col>
-            </>
-          ) : selectedMovie ? (
-            <Col md={8}>
-              <MovieView
-                movie={selectedMovie}
-                onBackClick={() => setSelectedMovie(null)}
-              />
-            </Col>
-          ) : movies.length === 0 ? (
-            <div>The list is empty!</div>
-          ) : (
-            <>
-              {movies.map(movie => (
-                <Col key={movie._id} className='mb-5' md={3}>
-                  <MovieCard
-                    key={movie._id}
-                    movie={movie}
-                    onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)}
-                  />
-                </Col>
-              ))}
-              <Button
-                className='btn-danger'
-                onClick={() => { setUser(null); setToken(null); localStorage.clear() }}>
-                  Logout
-              </Button>
-            </>
-          )
-          } */}
         </Routes>
       </Row>
     </BrowserRouter>

@@ -9,11 +9,6 @@ export const MovieCard = ({ movie, fav, onAddToFavorites, onRemoveFromFavorites 
   useEffect(() => {
     setIsFav(fav)
   }, [fav])
-
-  // const handleAddToFavorites = movieId => {
-  //   onAddToFavorites(movieId)
-  //   setIsFav(true)
-  // }
   
   return (
     <Card className='h-100 pointer movie-card text-bg-warning'>

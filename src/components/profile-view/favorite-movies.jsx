@@ -22,29 +22,9 @@ export function FavoriteMovies({ movies, favoriteMoviesList, onAddToFavorites })
                 movie={movie}
                 fav={favoriteMoviesList.includes(movie._id)}
                 onAddToFavorites={onAddToFavorites} />
-              {/* <img src={movie.ImagePath} alt={movie.Title} />
-              <Link to={`/movies/${movie._id}`}>
-                <h4>{movie.Title}</h4>
-              </Link>
-              <button variant="secondary" onClick={() => removeFav(movie._id)}>Remove from list</button> */}
             </Col>
           ))
         }
-        {/* {favoriteMoviesList.map(movie => {
-          return (
-            <Col
-              key={movie._id}
-              xs={12}
-              md={6}
-              lg={3}>
-              <img src={movie.ImagePath} alt={movie.Title} />
-              <Link to={`/movies/${movie._id}`}>
-                <h4>{movie.Title}</h4>
-              </Link>
-              <button variant="secondary" onClick={() => removeFav(movie._id)}>Remove from list</button>
-            </Col>
-          )
-        })} */}
       </Row>
     </Row>
   )

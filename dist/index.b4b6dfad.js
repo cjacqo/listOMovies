@@ -35751,10 +35751,6 @@ const MovieCard = ({ movie, fav, onAddToFavorites, onRemoveFromFavorites })=>{
     }, [
         fav
     ]);
-    // const handleAddToFavorites = movieId => {
-    //   onAddToFavorites(movieId)
-    //   setIsFav(true)
-    // }
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
         className: "h-100 pointer movie-card text-bg-warning",
         children: [
@@ -35765,7 +35761,7 @@ const MovieCard = ({ movie, fav, onAddToFavorites, onRemoveFromFavorites })=>{
                 alt: movie.Title
             }, void 0, false, {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 20,
+                lineNumber: 15,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
@@ -35776,7 +35772,7 @@ const MovieCard = ({ movie, fav, onAddToFavorites, onRemoveFromFavorites })=>{
                         children: movie.Title
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 26,
+                        lineNumber: 21,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
@@ -35786,24 +35782,24 @@ const MovieCard = ({ movie, fav, onAddToFavorites, onRemoveFromFavorites })=>{
                             children: "Open"
                         }, void 0, false, {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 28,
+                            lineNumber: 23,
                             columnNumber: 11
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 27,
+                        lineNumber: 22,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 25,
+                lineNumber: 20,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/movie-card/movie-card.jsx",
-        lineNumber: 19,
+        lineNumber: 14,
         columnNumber: 5
     }, undefined);
 };
