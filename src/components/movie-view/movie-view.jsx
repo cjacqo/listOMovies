@@ -9,11 +9,11 @@ import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 
-export const MovieView = ({ movies, onAddToFavorites }) => {
+export const MovieView = ({ movies, favMovies, onAddToFavorites }) => {
   const { movieId } = useParams()
   const [genre, setGenre] = useState(null)
   const [directors, setDirectors] = useState([])
-  const [isFav, setIsFav] = useState(false)
+  const [isFav, setIsFav] = useState(favMovies?.includes(movieId) || false)
 
   const movie = movies.find(m => m._id === movieId)
 

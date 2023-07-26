@@ -27443,6 +27443,7 @@ const MainView = ()=>{
                                     md: 8,
                                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
                                         movies: movies,
+                                        favMovies: favMovies,
                                         onAddToFavorites: (movieId)=>handleAddToFavs(movieId)
                                     }, void 0, false, void 0, void 0)
                                 }, void 0, false, void 0, void 0)
@@ -27474,7 +27475,7 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 115,
+                            lineNumber: 116,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27492,7 +27493,7 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 138,
+                            lineNumber: 139,
                             columnNumber: 11
                         }, undefined)
                     ]
@@ -27581,12 +27582,12 @@ var _cardDefault = parcelHelpers.interopDefault(_card);
 var _button = require("react-bootstrap/Button");
 var _buttonDefault = parcelHelpers.interopDefault(_button);
 var _s = $RefreshSig$();
-const MovieView = ({ movies, onAddToFavorites })=>{
+const MovieView = ({ movies, favMovies, onAddToFavorites })=>{
     _s();
     const { movieId } = (0, _reactRouter.useParams)();
     const [genre, setGenre] = (0, _react.useState)(null);
     const [directors, setDirectors] = (0, _react.useState)([]);
-    const [isFav, setIsFav] = (0, _react.useState)(false);
+    const [isFav, setIsFav] = (0, _react.useState)(favMovies?.includes(movieId) || false);
     const movie = movies.find((m)=>m._id === movieId);
     (0, _react.useEffect)(()=>{
         fetch("https://list-o-movies-311c22237892.herokuapp.com/genres").then((res)=>res.json()).then((data)=>{
@@ -27751,7 +27752,7 @@ const MovieView = ({ movies, onAddToFavorites })=>{
         columnNumber: 5
     }, undefined);
 };
-_s(MovieView, "WZo5vYFW9Z1aF9oXBLl+zn5uP94=", false, function() {
+_s(MovieView, "CUY9/oS/V9Np09M9aKh2poucaxU=", false, function() {
     return [
         (0, _reactRouter.useParams)
     ];

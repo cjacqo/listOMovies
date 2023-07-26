@@ -106,6 +106,7 @@ export const MainView = () => {
                   <Col md={8}>
                     <MovieView
                       movies={movies}
+                      favMovies={favMovies}
                       onAddToFavorites={movieId => handleAddToFavs(movieId)}  />
                   </Col>
                 )}
