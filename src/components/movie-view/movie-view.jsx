@@ -36,6 +36,7 @@ export const MovieView = ({ movies, favMovies, onAddToFavorites, onRemoveFromFav
   }, [movie])
 
   const handleFavoriteClick = () => {
+    console.log('handleFavClick')
     setIsFav(!isFav)
     if (isFav) onRemoveFromFavorites(movieId)
     else onAddToFavorites(movieId)

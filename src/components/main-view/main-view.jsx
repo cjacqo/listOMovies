@@ -19,7 +19,6 @@ export const MainView = () => {
 
 
   useEffect(() => {
-    console.log('token')
     if (!token) return
 
     fetch('https://list-o-movies-311c22237892.herokuapp.com/movies', {
@@ -30,13 +29,11 @@ export const MainView = () => {
   }, [token])
 
   useEffect(() => {
-    console.log('user')
     if (!user) setFavMovies([])
     else setFavMovies(user.FavoriteMovies || [])
   }, [user])
 
   const handleAddToFavs = async (movieId) => {
-    console.log('addToFavs')
     if (favMovies.includes(movieId)) {
       alert('This movie is already in your favorites')
       return
@@ -69,7 +66,7 @@ export const MainView = () => {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       })
-      const tempFavMovies = favMovies.filter(movie => movie._id !== movieId)
+      const tempFavMovies = favMovies.filter(id => id !== movieId)
       setFavMovies(tempFavMovies)
       updateFavoriteMovies(tempFavMovies)
     } catch (e) {
