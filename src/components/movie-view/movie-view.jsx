@@ -9,7 +9,7 @@ import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 
-export const MovieView = ({ movies, favMovies, onAddToFavorites }) => {
+export const MovieView = ({ movies, favMovies, onAddToFavorites, onRemoveFromFavorites }) => {
   const { movieId } = useParams()
   const [genre, setGenre] = useState(null)
   const [directors, setDirectors] = useState([])
@@ -37,6 +37,7 @@ export const MovieView = ({ movies, favMovies, onAddToFavorites }) => {
 
   useEffect(() => {
     if (isFav) onAddToFavorites(movieId)
+    else onRemoveFromFavorites(movieId)
   }, [isFav])
 
   const handleFavoriteClick = () => {
@@ -58,13 +59,8 @@ export const MovieView = ({ movies, favMovies, onAddToFavorites }) => {
               <p className='card-text'><strong>Description:</strong>{movie.Description}</p>
               <p>Genre: {genre}</p>
               <p>{directorTitle}: {directors.map((director, i) => <span key={i}>{director.Name}&nbsp;</span>)}</p>
-              {
-                isFav ? (
-                  <Button>Remove from favorites</Button>
-                ) : (
-                  <Button onClick={() => handleFavoriteClick()}>Add to favorites</Button>
-                )
-              }
+              <Button onClick={() => handleFavoriteClick()}>{!isFav ? 'Add to favorites' : 'Remove from favorites'}</Button>
+
               <Link to={`/`}>
                 <Button className='btn-dark'>
                   Back

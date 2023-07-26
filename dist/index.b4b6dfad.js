@@ -27370,8 +27370,28 @@ const MainView = ()=>{
             setFavMovies(tempFavMovies);
             updateFavoriteMovies(tempFavMovies);
         } catch (e) {
-            console.error("Error:", error);
-            alert("There was an error");
+            console.error("Error:", e);
+            alert("There was an error adding movie to favorites");
+        }
+    };
+    const handleRemoveFromFavs = async (movieId)=>{
+        if (!favMovies.includes(movieId)) {
+            alert("This movie is not in your favorites list");
+            return;
+        }
+        try {
+            await fetch(`https://list-o-movies-311c22237892.herokuapp.com/users/${user.UserName}/movies/${movieId}`, {
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            const tempFavMovies = favMovies.filter((movie)=>movie._id !== movieId);
+            setFavMovies(tempFavMovies);
+            updateFavoriteMovies(tempFavMovies);
+        } catch (e) {
+            console.log("Error:", e);
+            alert("There was an error removing movie from favorites");
         }
     };
     const updateFavoriteMovies = (updatedFavMovies)=>{
@@ -27389,7 +27409,7 @@ const MainView = ()=>{
                 }
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 64,
+                lineNumber: 85,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
@@ -27408,7 +27428,7 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 69,
+                            lineNumber: 90,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27428,7 +27448,7 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 83,
+                            lineNumber: 104,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27444,13 +27464,14 @@ const MainView = ()=>{
                                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
                                         movies: movies,
                                         favMovies: favMovies,
-                                        onAddToFavorites: (movieId)=>handleAddToFavs(movieId)
+                                        onAddToFavorites: handleAddToFavs,
+                                        onRemoveFromFavorites: handleRemoveFromFavs
                                     }, void 0, false, void 0, void 0)
                                 }, void 0, false, void 0, void 0)
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 97,
+                            lineNumber: 118,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27468,14 +27489,15 @@ const MainView = ()=>{
                                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
                                                 movie: movie,
                                                 fav: favMovies.includes(movie._id),
-                                                onAddToFavorites: (movieId)=>handleAddToFavs(movieId)
+                                                onAddToFavorites: (movieId)=>handleAddToFavs(movieId),
+                                                onRemoveFromFavorites: (movieId)=>handleRemoveFromFavs(movieId)
                                             }, void 0, false, void 0, void 0)
                                         }, movie._id, false, void 0, void 0))
                                 }, void 0, false)
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 116,
+                            lineNumber: 138,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27488,29 +27510,30 @@ const MainView = ()=>{
                                     movies: movies,
                                     favMovies: favMovies,
                                     onAddToFavorites: handleAddToFavs,
+                                    onRemoveFromFavorites: handleRemoveFromFavs,
                                     user: user
                                 }, void 0, false, void 0, void 0)
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 139,
+                            lineNumber: 162,
                             columnNumber: 11
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 68,
+                    lineNumber: 89,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 67,
+                lineNumber: 88,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 63,
+        lineNumber: 84,
         columnNumber: 5
     }, undefined);
 };
@@ -27582,7 +27605,7 @@ var _cardDefault = parcelHelpers.interopDefault(_card);
 var _button = require("react-bootstrap/Button");
 var _buttonDefault = parcelHelpers.interopDefault(_button);
 var _s = $RefreshSig$();
-const MovieView = ({ movies, favMovies, onAddToFavorites })=>{
+const MovieView = ({ movies, favMovies, onAddToFavorites, onRemoveFromFavorites })=>{
     _s();
     const { movieId } = (0, _reactRouter.useParams)();
     const [genre, setGenre] = (0, _react.useState)(null);
@@ -27606,6 +27629,7 @@ const MovieView = ({ movies, favMovies, onAddToFavorites })=>{
     ]);
     (0, _react.useEffect)(()=>{
         if (isFav) onAddToFavorites(movieId);
+        else onRemoveFromFavorites(movieId);
     }, [
         isFav
     ]);
@@ -27630,12 +27654,12 @@ const MovieView = ({ movies, favMovies, onAddToFavorites })=>{
                             alt: movie.Title
                         }, void 0, false, {
                             fileName: "src/components/movie-view/movie-view.jsx",
-                            lineNumber: 53,
+                            lineNumber: 54,
                             columnNumber: 13
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 52,
+                        lineNumber: 53,
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
@@ -27645,7 +27669,7 @@ const MovieView = ({ movies, favMovies, onAddToFavorites })=>{
                                     children: movie.Title
                                 }, void 0, false, {
                                     fileName: "src/components/movie-view/movie-view.jsx",
-                                    lineNumber: 57,
+                                    lineNumber: 58,
                                     columnNumber: 15
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -27655,14 +27679,14 @@ const MovieView = ({ movies, favMovies, onAddToFavorites })=>{
                                             children: "Description:"
                                         }, void 0, false, {
                                             fileName: "src/components/movie-view/movie-view.jsx",
-                                            lineNumber: 58,
+                                            lineNumber: 59,
                                             columnNumber: 40
                                         }, undefined),
                                         movie.Description
                                     ]
                                 }, void 0, true, {
                                     fileName: "src/components/movie-view/movie-view.jsx",
-                                    lineNumber: 58,
+                                    lineNumber: 59,
                                     columnNumber: 15
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -27672,7 +27696,7 @@ const MovieView = ({ movies, favMovies, onAddToFavorites })=>{
                                     ]
                                 }, void 0, true, {
                                     fileName: "src/components/movie-view/movie-view.jsx",
-                                    lineNumber: 59,
+                                    lineNumber: 60,
                                     columnNumber: 15
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -27686,28 +27710,22 @@ const MovieView = ({ movies, favMovies, onAddToFavorites })=>{
                                                 ]
                                             }, i, true, {
                                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                                lineNumber: 60,
+                                                lineNumber: 61,
                                                 columnNumber: 67
                                             }, undefined))
                                     ]
                                 }, void 0, true, {
                                     fileName: "src/components/movie-view/movie-view.jsx",
-                                    lineNumber: 60,
+                                    lineNumber: 61,
                                     columnNumber: 15
                                 }, undefined),
-                                isFav ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
-                                    children: "Remove from favorites"
-                                }, void 0, false, {
-                                    fileName: "src/components/movie-view/movie-view.jsx",
-                                    lineNumber: 63,
-                                    columnNumber: 19
-                                }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
                                     onClick: ()=>handleFavoriteClick(),
-                                    children: "Add to favorites"
+                                    children: !isFav ? "Add to favorites" : "Remove from favorites"
                                 }, void 0, false, {
                                     fileName: "src/components/movie-view/movie-view.jsx",
-                                    lineNumber: 65,
-                                    columnNumber: 19
+                                    lineNumber: 62,
+                                    columnNumber: 15
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
                                     to: `/`,
@@ -27716,39 +27734,39 @@ const MovieView = ({ movies, favMovies, onAddToFavorites })=>{
                                         children: "Back"
                                     }, void 0, false, {
                                         fileName: "src/components/movie-view/movie-view.jsx",
-                                        lineNumber: 69,
+                                        lineNumber: 65,
                                         columnNumber: 17
                                     }, undefined)
                                 }, void 0, false, {
                                     fileName: "src/components/movie-view/movie-view.jsx",
-                                    lineNumber: 68,
+                                    lineNumber: 64,
                                     columnNumber: 15
                                 }, undefined)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/movie-view/movie-view.jsx",
-                            lineNumber: 56,
+                            lineNumber: 57,
                             columnNumber: 13
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 55,
+                        lineNumber: 56,
                         columnNumber: 11
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 51,
+                lineNumber: 52,
                 columnNumber: 9
             }, undefined)
         }, void 0, false, {
             fileName: "src/components/movie-view/movie-view.jsx",
-            lineNumber: 50,
+            lineNumber: 51,
             columnNumber: 7
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/movie-view/movie-view.jsx",
-        lineNumber: 49,
+        lineNumber: 50,
         columnNumber: 5
     }, undefined);
 };
@@ -35729,7 +35747,7 @@ var _react = require("react");
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
 var _s = $RefreshSig$();
-const MovieCard = ({ movie, fav, onAddToFavorites })=>{
+const MovieCard = ({ movie, fav, onAddToFavorites, onRemoveFromFavorites })=>{
     _s();
     const [isFav, setIsFav] = (0, _react.useState)(fav);
     (0, _react.useEffect)(()=>{
@@ -35737,10 +35755,10 @@ const MovieCard = ({ movie, fav, onAddToFavorites })=>{
     }, [
         fav
     ]);
-    const handleAddToFavorites = (movieId)=>{
-        onAddToFavorites(movieId);
-        setIsFav(true);
-    };
+    // const handleAddToFavorites = movieId => {
+    //   onAddToFavorites(movieId)
+    //   setIsFav(true)
+    // }
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
         className: "h-100 pointer movie-card text-bg-warning",
         children: [

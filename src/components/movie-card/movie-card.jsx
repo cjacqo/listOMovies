@@ -3,17 +3,17 @@ import { useEffect, useState } from 'react'
 import { Button, Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-export const MovieCard = ({ movie, fav, onAddToFavorites }) => {
+export const MovieCard = ({ movie, fav, onAddToFavorites, onRemoveFromFavorites }) => {
   const [isFav, setIsFav] = useState(fav)
 
   useEffect(() => {
     setIsFav(fav)
   }, [fav])
 
-  const handleAddToFavorites = movieId => {
-    onAddToFavorites(movieId)
-    setIsFav(true)
-  }
+  // const handleAddToFavorites = movieId => {
+  //   onAddToFavorites(movieId)
+  //   setIsFav(true)
+  // }
   
   return (
     <Card className='h-100 pointer movie-card text-bg-warning'>

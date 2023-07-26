@@ -49,8 +49,29 @@ export const MainView = () => {
       setFavMovies(tempFavMovies)
       updateFavoriteMovies(tempFavMovies)
     } catch (e) {
-      console.error('Error:', error)
-      alert('There was an error')
+      console.error('Error:', e)
+      alert('There was an error adding movie to favorites')
+    }
+  }
+
+  const handleRemoveFromFavs = async (movieId) => {
+    if (!favMovies.includes(movieId)) {
+      alert('This movie is not in your favorites list')
+      return
+    }
+
+    try {
+      await fetch(`https://list-o-movies-311c22237892.herokuapp.com/users/${user.UserName}/movies/${movieId}`,
+      {
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      const tempFavMovies = favMovies.filter(movie => movie._id !== movieId)
+      setFavMovies(tempFavMovies)
+      updateFavoriteMovies(tempFavMovies)
+    } catch (e) {
+      console.log('Error:', e)
+      alert('There was an error removing movie from favorites')
     }
   }
 
@@ -107,7 +128,8 @@ export const MainView = () => {
                     <MovieView
                       movies={movies}
                       favMovies={favMovies}
-                      onAddToFavorites={movieId => handleAddToFavs(movieId)}  />
+                      onAddToFavorites={handleAddToFavs}
+                      onRemoveFromFavorites={handleRemoveFromFavs}  />
                   </Col>
                 )}
               </>
@@ -128,7 +150,8 @@ export const MainView = () => {
                         <MovieCard
                           movie={movie}
                           fav={favMovies.includes(movie._id)}
-                          onAddToFavorites={movieId => handleAddToFavs(movieId)}  />
+                          onAddToFavorites={movieId => handleAddToFavs(movieId)}
+                          onRemoveFromFavorites={movieId => handleRemoveFromFavs(movieId)}  />
                       </Col>
                     ))}
                   </>
@@ -147,6 +170,7 @@ export const MainView = () => {
                     movies={movies}
                     favMovies={favMovies}
                     onAddToFavorites={handleAddToFavs}
+                    onRemoveFromFavorites={handleRemoveFromFavs}
                     user={user} />
                 )}
               </>
