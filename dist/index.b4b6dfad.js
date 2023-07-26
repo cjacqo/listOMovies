@@ -27506,7 +27506,6 @@ const MainView = ()=>{
                                     replace: true
                                 }, void 0, false, void 0, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _profileView.ProfileView), {
                                     movies: movies,
-                                    favMovies: favMovies,
                                     user: user
                                 }, void 0, false, void 0, void 0)
                             }, void 0, false)
@@ -27769,7 +27768,10 @@ _s(MovieView, "+oMrPNt/q5hdhSfYUeO8z/ZVEv0=", false, function() {
 });
 _c = MovieView;
 MovieView.propTypes = {
-    movies: (0, _propTypesDefault.default).array.isRequired
+    movies: (0, _propTypesDefault.default).array.isRequired,
+    favMovies: (0, _propTypesDefault.default).array.isRequired,
+    onAddToFavorites: (0, _propTypesDefault.default).func.isRequired,
+    onRemoveFromFavorites: (0, _propTypesDefault.default).func.isRequired
 };
 var _c;
 $RefreshReg$(_c, "MovieView");

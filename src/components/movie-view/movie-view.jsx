@@ -73,14 +73,7 @@ export const MovieView = ({ movies, favMovies, onAddToFavorites, onRemoveFromFav
 
 MovieView.propTypes = {
   movies: PropTypes.array.isRequired,
-  // user: PropTypes.object.isRequired,
-  // token: PropTypes.string.isRequired,
-  // setUser: PropTypes.func.isRequired
-  // movie: PropTypes.shape({
-  //   Title: PropTypes.string.isRequired,
-  //   ImagePath: PropTypes.string.isRequired,
-  //   Description: PropTypes.string.isRequired,
-  //   Genre: PropTypes.string.isRequired,
-  //   Directors: PropTypes.array.isRequired
-  // }).isRequired
+  favMovies: PropTypes.array.isRequired,
+  onAddToFavorites: PropTypes.func.isRequired,
+  onRemoveFromFavorites: PropTypes.func.isRequired
 }

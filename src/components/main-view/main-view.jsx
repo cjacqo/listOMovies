@@ -166,7 +166,6 @@ export const MainView = () => {
                 ) : (
                   <ProfileView
                     movies={movies}
-                    favMovies={favMovies}
                     user={user} />
                 )}
               </>
