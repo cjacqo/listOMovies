@@ -35,13 +35,10 @@ export const MovieView = ({ movies, favMovies, onAddToFavorites, onRemoveFromFav
       })
   }, [movie])
 
-  useEffect(() => {
-    if (isFav) onAddToFavorites(movieId)
-    else onRemoveFromFavorites(movieId)
-  }, [isFav])
-
   const handleFavoriteClick = () => {
     setIsFav(!isFav)
+    if (isFav) onRemoveFromFavorites(movieId)
+    else onAddToFavorites(movieId)
   }
 
   const directorTitle = movie.Directors.length > 1 ? 'Directors' : 'Director'
