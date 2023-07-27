@@ -6,7 +6,7 @@ import { UserInfo } from './user-info'
 import { FavoriteMovies } from './favorite-movies'
 import { UpdateUser } from './update-user'
 
-export function ProfileView({ movies, user }) {
+export function ProfileView({ movies, user, setUser }) {
 
   const favoriteMoviesList = movies.filter(m => user.FavoriteMovies.includes(m._id))
 
@@ -18,15 +18,12 @@ export function ProfileView({ movies, user }) {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('token')}`
       },
-      body: JSON.stringify({
-        UserName: updatedUser.UserName,
-        Password: updatedUser.Password,
-        Email: updatedUser.Email
-      })
+      body: JSON.stringify(updatedUser)
     }).then(res => {
+      console.log(res)
       if (res.ok) return res.json()
+      else alert('Update failed')
     })
-    .then(data => console.log(data))
   }
 
   return (
