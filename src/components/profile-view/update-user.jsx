@@ -59,8 +59,7 @@ export function UpdateUser({ user, handleSubmit }) {
             name='Email'
             defaultValue={user.Email}
             onChange={e => handleUserUpdate(e)}
-            placeholder='Enter an email'
-            required />
+            placeholder='Enter an email' />
         </Form.Group>
         
         <button variant='primary' type='submit'>

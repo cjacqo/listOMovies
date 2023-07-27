@@ -80,6 +80,11 @@ export const MainView = () => {
     localStorage.setItem('user', JSON.stringify(user))
   }
 
+  const updateUser = user => {
+    setUser(user)
+    localStorage.setItem('user', JSON.stringify(user))
+  }
+
   return (
     <BrowserRouter>
       <NavigationBar
@@ -167,7 +172,7 @@ export const MainView = () => {
                   <ProfileView
                     movies={movies}
                     user={user}
-                    setUser={setUser} />
+                    setUser={updateUser} />
                 )}
               </>
             }

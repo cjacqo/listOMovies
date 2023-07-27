@@ -6,12 +6,28 @@ import { UserInfo } from './user-info'
 import { FavoriteMovies } from './favorite-movies'
 import { UpdateUser } from './update-user'
 
-export function ProfileView({ movies, user, setUser }) {
+export function ProfileView({ movies, user }) {
 
   const favoriteMoviesList = movies.filter(m => user.FavoriteMovies.includes(m._id))
 
-  const handleUpdate = (e, updatedUser) => {
+  useEffect(() => {
+    console.log(user)
+  }, [user])
+
+  const handleUpdate = (e, updatedUser, setUser) => {
     e.preventDefault()
+    // const { UserName, Password, Email } = updatedUser
+    // if (!UserName && !Password && !Email) {
+    //   alert('No data to provided to update')
+    //   return
+    // }
+
+    // const newUserData = {
+    //   UserName: UserName ? UserName : user.UserName,
+    //   Password: Password ? Password : user.Password,
+    //   Email: Email ? Email : user.Email
+    // }
+
     fetch(`https://list-o-movies-311c22237892.herokuapp.com/users/${user.UserName}`, {
       method: 'PUT',
       headers: {
@@ -20,9 +36,16 @@ export function ProfileView({ movies, user, setUser }) {
       },
       body: JSON.stringify(updatedUser)
     }).then(res => {
-      console.log(res)
-      if (res.ok) return res.json()
-      else alert('Update failed')
+      if (res.ok) {
+        return res.json()
+      }
+    }).then(data => {
+
+      if (data) {
+        setUser(data)
+      }
+    }).catch(e => {
+      alert(e)
     })
   }
 
@@ -55,5 +78,6 @@ export function ProfileView({ movies, user, setUser }) {
 
 ProfileView.propTypes = {
   movies: PropTypes.array.isRequired,
-  user: PropTypes.object.isRequired
+  user: PropTypes.object.isRequired,
+  setUser: PropTypes.func.isRequired
 }
