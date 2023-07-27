@@ -16,17 +16,6 @@ export function ProfileView({ movies, user }) {
 
   const handleUpdate = (e, updatedUser, setUser) => {
     e.preventDefault()
-    // const { UserName, Password, Email } = updatedUser
-    // if (!UserName && !Password && !Email) {
-    //   alert('No data to provided to update')
-    //   return
-    // }
-
-    // const newUserData = {
-    //   UserName: UserName ? UserName : user.UserName,
-    //   Password: Password ? Password : user.Password,
-    //   Email: Email ? Email : user.Email
-    // }
 
     fetch(`https://list-o-movies-311c22237892.herokuapp.com/users/${user.UserName}`, {
       method: 'PUT',
@@ -40,7 +29,6 @@ export function ProfileView({ movies, user }) {
         return res.json()
       }
     }).then(data => {
-
       if (data) {
         setUser(data)
       }
