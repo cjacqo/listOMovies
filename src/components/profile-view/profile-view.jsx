@@ -6,7 +6,7 @@ import { UserInfo } from './user-info'
 import { FavoriteMovies } from './favorite-movies'
 import { UpdateUser } from './update-user'
 
-export function ProfileView({ movies, user }) {
+export function ProfileView({ movies, user, updateUser }) {
 
   const favoriteMoviesList = movies.filter(m => user.FavoriteMovies.includes(m._id))
 
@@ -14,7 +14,7 @@ export function ProfileView({ movies, user }) {
     console.log(user)
   }, [user])
 
-  const handleUpdate = (e, updatedUser, setUser) => {
+  const handleUpdate = (e, updatedUser) => {
     e.preventDefault()
 
     fetch(`https://list-o-movies-311c22237892.herokuapp.com/users/${user.UserName}`, {
@@ -30,7 +30,7 @@ export function ProfileView({ movies, user }) {
       }
     }).then(data => {
       if (data) {
-        setUser(data)
+        updateUser(data)
       }
     }).catch(e => {
       alert(e)
@@ -67,5 +67,5 @@ export function ProfileView({ movies, user }) {
 ProfileView.propTypes = {
   movies: PropTypes.array.isRequired,
   user: PropTypes.object.isRequired,
-  setUser: PropTypes.func.isRequired
+  updateUser: PropTypes.func.isRequired
 }

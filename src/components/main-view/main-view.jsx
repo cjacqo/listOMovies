@@ -172,7 +172,7 @@ export const MainView = () => {
                   <ProfileView
                     movies={movies}
                     user={user}
-                    setUser={updateUser} />
+                    updateUser={updateUser} />
                 )}
               </>
             }
