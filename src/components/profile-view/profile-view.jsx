@@ -6,7 +6,7 @@ import { UserInfo } from './user-info'
 import { FavoriteMovies } from './favorite-movies'
 import { UpdateUser } from './update-user'
 
-export function ProfileView({ movies, user, updateUser }) {
+export function ProfileView({ movies, user, updateUser, handleUserLogout }) {
 
   const favoriteMoviesList = movies.filter(m => user.FavoriteMovies.includes(m._id))
 
@@ -37,13 +37,28 @@ export function ProfileView({ movies, user, updateUser }) {
     })
   }
 
+  const handleUserDeactivation = () => {
+    fetch(`https://list-o-movies-311c22237892.herokuapp.com/users/${user.UserName}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    }).then(res => {
+      if (res.ok) handleUserLogout()
+      else alert('Something went wrong')
+    })
+  }
   return (
     <Container>
       <Row>
         <Col xs={12} sm={4}>
           <Card>
             <Card.Body>
-              <UserInfo name={user.UserName} email={user.Email} />
+              <UserInfo
+                name={user.UserName}
+                email={user.Email}
+                handleUserDeactivation={handleUserDeactivation} />
             </Card.Body>
           </Card>
         </Col>
@@ -67,5 +82,6 @@ export function ProfileView({ movies, user, updateUser }) {
 ProfileView.propTypes = {
   movies: PropTypes.array.isRequired,
   user: PropTypes.object.isRequired,
-  updateUser: PropTypes.func.isRequired
+  updateUser: PropTypes.func.isRequired,
+  handleUserLogout: PropTypes.func.isRequired
 }

@@ -82,14 +82,21 @@ export const MainView = () => {
 
   const updateUser = user => {
     setUser(user)
+    console.log(user)
     localStorage.setItem('user', JSON.stringify(user))
+  }
+
+  const handleUserLogout = () => {
+    setUser(null)
+    setToken(null)
+    localStorage.clear()
   }
 
   return (
     <BrowserRouter>
       <NavigationBar
         user={user}
-        onLoggedOut={() => { setUser(null); setToken(null); localStorage.clear(); }} />
+        onLoggedOut={() => handleUserLogout()} />
       <Row className='justify-content-md-center'>
         <Routes>
           <Route
@@ -172,7 +179,8 @@ export const MainView = () => {
                   <ProfileView
                     movies={movies}
                     user={user}
-                    updateUser={updateUser} />
+                    updateUser={updateUser}
+                    handleUserLogout={handleUserLogout} />
                 )}
               </>
             }
