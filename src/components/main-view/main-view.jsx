@@ -16,6 +16,7 @@ export const MainView = () => {
   const [token, setToken] = useState(storedToken ? storedToken : null)
   const [movies, setMovies] = useState([])
   const [favMovies, setFavMovies] = useState(user?.FavoriteMovies || [])
+  const [filter, setFilter] = useState(false)
 
 
   useEffect(() => {
