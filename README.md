@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # List O Movies
 
 A simple movie application that allows users to create an account, view a list of movies from my movies API that includes a brief description, directors of the movie and it's genre, as well as add/remove movies from their favorites list. A user will have to be signed up and authenticated in order to view the list of movies.
@@ -32,3 +33,5 @@ Link to movie API repo: https://github.com/cjacqo/movie_api
 - UUID
 
 
+=======
+>>>>>>> netlify
