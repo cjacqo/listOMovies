@@ -16,6 +16,7 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null)
   const [token, setToken] = useState(storedToken ? storedToken : null)
   const [movies, setMovies] = useState([])
+  const [filteredMovies, setFilteredMovies] = useState([])
   const [favMovies, setFavMovies] = useState(user?.FavoriteMovies || [])
   const [filter, setFilter] = useState(false)
   const [genres, setGenres] = useState(false)
@@ -23,12 +24,35 @@ export const MainView = () => {
 
   useEffect(() => {
     if (!token) return
+    fetchAllMovies()
+    fetchAllGenres()
+  }, [token])
 
+  useEffect(() => {
+    if (!user) setFavMovies([])
+    else setFavMovies(user.FavoriteMovies || [])
+  }, [user])
+
+  useEffect(() => {
+    if (filter === 'All') setFilteredMovies(movies)
+    else {
+      const filteredMovies = movies.filter(movie => movie.Genre === filter)
+      setFilteredMovies(filteredMovies)
+    }
+  }, [filter])
+
+  const fetchAllMovies = () => {
     fetch('https://list-o-movies-311c22237892.herokuapp.com/movies', {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => res.json())
-      .then(data => setMovies(data))
+      .then(data => {
+        setMovies(data)
+        setFilteredMovies(data)
+      })
+  }
+  
+  const fetchAllGenres = () => {
     fetch('https://list-o-movies-311c22237892.herokuapp.com/genres', {
       headers: { Authorization: `Bearer ${token}` }
     })
@@ -36,12 +60,7 @@ export const MainView = () => {
       .then(data => {
         setGenres(data)
       })
-  }, [token])
-
-  useEffect(() => {
-    if (!user) setFavMovies([])
-    else setFavMovies(user.FavoriteMovies || [])
-  }, [user])
+  }
 
   const handleAddToFavs = async (movieId) => {
     if (favMovies.includes(movieId)) {
@@ -99,6 +118,11 @@ export const MainView = () => {
     setUser(null)
     setToken(null)
     localStorage.clear()
+  }
+
+  const handleGenreChange = (e) => {
+    const selectedGenre = e.target.value
+    setFilter(selectedGenre)
   }
 
   return (
@@ -166,8 +190,10 @@ export const MainView = () => {
                   <Col>The list is empty!</Col>
                 ) : (
                   <>
-                    <GenresFilter genres={genres} />
-                    {movies.map(movie => (
+                    <GenresFilter
+                      genres={genres}
+                      handleGenreChange={(e) => handleGenreChange(e)} />
+                    {filteredMovies.map(movie => (
                       <Col className='mb-4' key={movie._id} md={3}>
                         <MovieCard
                           movie={movie}

@@ -27197,23 +27197,14 @@ const MainView = ()=>{
     const [user, setUser] = (0, _react.useState)(storedUser ? storedUser : null);
     const [token, setToken] = (0, _react.useState)(storedToken ? storedToken : null);
     const [movies, setMovies] = (0, _react.useState)([]);
+    const [filteredMovies, setFilteredMovies] = (0, _react.useState)([]);
     const [favMovies, setFavMovies] = (0, _react.useState)(user?.FavoriteMovies || []);
     const [filter, setFilter] = (0, _react.useState)(false);
     const [genres, setGenres] = (0, _react.useState)(false);
     (0, _react.useEffect)(()=>{
         if (!token) return;
-        fetch("https://list-o-movies-311c22237892.herokuapp.com/movies", {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((res)=>res.json()).then((data)=>setMovies(data));
-        fetch("https://list-o-movies-311c22237892.herokuapp.com/genres", {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((res)=>res.json()).then((data)=>{
-            setGenres(data);
-        });
+        fetchAllMovies();
+        fetchAllGenres();
     }, [
         token
     ]);
@@ -27223,6 +27214,34 @@ const MainView = ()=>{
     }, [
         user
     ]);
+    (0, _react.useEffect)(()=>{
+        if (filter === "All") setFilteredMovies(movies);
+        else {
+            const filteredMovies = movies.filter((movie)=>movie.Genre === filter);
+            setFilteredMovies(filteredMovies);
+        }
+    }, [
+        filter
+    ]);
+    const fetchAllMovies = ()=>{
+        fetch("https://list-o-movies-311c22237892.herokuapp.com/movies", {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((res)=>res.json()).then((data)=>{
+            setMovies(data);
+            setFilteredMovies(data);
+        });
+    };
+    const fetchAllGenres = ()=>{
+        fetch("https://list-o-movies-311c22237892.herokuapp.com/genres", {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((res)=>res.json()).then((data)=>{
+            setGenres(data);
+        });
+    };
     const handleAddToFavs = async (movieId)=>{
         if (favMovies.includes(movieId)) {
             alert("This movie is already in your favorites");
@@ -27279,6 +27298,10 @@ const MainView = ()=>{
         setToken(null);
         localStorage.clear();
     };
+    const handleGenreChange = (e)=>{
+        const selectedGenre = e.target.value;
+        setFilter(selectedGenre);
+    };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.BrowserRouter), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navigationBar.NavigationBar), {
@@ -27286,7 +27309,7 @@ const MainView = ()=>{
                 onLoggedOut: ()=>handleUserLogout()
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 106,
+                lineNumber: 130,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
@@ -27305,7 +27328,7 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 111,
+                            lineNumber: 135,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27325,7 +27348,7 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 125,
+                            lineNumber: 149,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27348,7 +27371,7 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 139,
+                            lineNumber: 163,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27362,9 +27385,10 @@ const MainView = ()=>{
                                 }, void 0, false, void 0, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
                                     children: [
                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _genresFilter.GenresFilter), {
-                                            genres: genres
+                                            genres: genres,
+                                            handleGenreChange: (e)=>handleGenreChange(e)
                                         }, void 0, false, void 0, void 0),
-                                        movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                                        filteredMovies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                                                 className: "mb-4",
                                                 md: 3,
                                                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
@@ -27377,7 +27401,7 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 159,
+                            lineNumber: 183,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27395,28 +27419,28 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 182,
+                            lineNumber: 208,
                             columnNumber: 11
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 110,
+                    lineNumber: 134,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 109,
+                lineNumber: 133,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 105,
+        lineNumber: 129,
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "c7NpcEPLfWcRxb3LZtQdJ37w8JU=");
+_s(MainView, "PE1j6L0rWuPUrEuH5rKMEzXcq5E=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
@@ -48188,19 +48212,60 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "GenresFilter", ()=>GenresFilter);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
-const GenresFilter = ({ genres })=>{
+var _reactBootstrap = require("react-bootstrap");
+const GenresFilter = ({ genres, handleGenreChange })=>{
     console.log(genres);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        children: "GenresFilter"
+        style: {
+            marginBottom: "2rem"
+        },
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
+            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Select, {
+                mb: "3",
+                onChange: handleGenreChange,
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("option", {
+                        value: "All",
+                        children: "All"
+                    }, void 0, false, {
+                        fileName: "src/components/main-view/genres-filter.jsx",
+                        lineNumber: 11,
+                        columnNumber: 11
+                    }, undefined),
+                    genres.map((genre)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("option", {
+                            value: genre._id,
+                            children: genre.Name
+                        }, genre._id, false, {
+                            fileName: "src/components/main-view/genres-filter.jsx",
+                            lineNumber: 14,
+                            columnNumber: 15
+                        }, undefined))
+                ]
+            }, void 0, true, {
+                fileName: "src/components/main-view/genres-filter.jsx",
+                lineNumber: 10,
+                columnNumber: 9
+            }, undefined)
+        }, void 0, false, {
+            fileName: "src/components/main-view/genres-filter.jsx",
+            lineNumber: 9,
+            columnNumber: 7
+        }, undefined)
     }, void 0, false, {
         fileName: "src/components/main-view/genres-filter.jsx",
-        lineNumber: 6,
+        lineNumber: 8,
         columnNumber: 5
     }, undefined);
 };
 _c = GenresFilter;
+GenresFilter.propTypes = {
+    genres: (0, _propTypesDefault.default).array.isRequired,
+    handleGenreChange: (0, _propTypesDefault.default).func.isRequired
+};
 var _c;
 $RefreshReg$(_c, "GenresFilter");
 
@@ -48209,6 +48274,6 @@ $RefreshReg$(_c, "GenresFilter");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"7LTH8","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dM9oO"}],"lJZlQ":[function() {},{}]},["aJic7","a8bS3","d8Dch"], "d8Dch", "parcelRequire36ce")
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"7LTH8","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dM9oO","react-bootstrap":"3AD9A","prop-types":"7wKI2"}],"lJZlQ":[function() {},{}]},["aJic7","a8bS3","d8Dch"], "d8Dch", "parcelRequire36ce")
 
 //# sourceMappingURL=index.b4b6dfad.js.map
