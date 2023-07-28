@@ -8,6 +8,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { ProfileView } from '../profile-view/profile-view'
+import { GenresFilter } from './genres-filter'
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem('user'))
@@ -17,6 +18,7 @@ export const MainView = () => {
   const [movies, setMovies] = useState([])
   const [favMovies, setFavMovies] = useState(user?.FavoriteMovies || [])
   const [filter, setFilter] = useState(false)
+  const [genres, setGenres] = useState(false)
 
 
   useEffect(() => {
@@ -27,6 +29,13 @@ export const MainView = () => {
     })
       .then(res => res.json())
       .then(data => setMovies(data))
+    fetch('https://list-o-movies-311c22237892.herokuapp.com/genres', {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(res => res.json())
+      .then(data => {
+        setGenres(data)
+      })
   }, [token])
 
   useEffect(() => {
@@ -157,6 +166,7 @@ export const MainView = () => {
                   <Col>The list is empty!</Col>
                 ) : (
                   <>
+                    <GenresFilter genres={genres} />
                     {movies.map(movie => (
                       <Col className='mb-4' key={movie._id} md={3}>
                         <MovieCard
